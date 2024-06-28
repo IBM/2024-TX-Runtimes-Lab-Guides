@@ -1,0 +1,2605 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Guidances for TechXchange Runtimes labs">
+      
+      
+        <meta name="author" content="Yi Tang (yitang@us.ibm.com)">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Liberty Getting Started - 2024 - TechXchange - Runtimes - Lab - Guidance</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#liberty-getting-started" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="2024 - TechXchange - Runtimes - Lab - Guidance" class="md-header__button md-logo" aria-label="2024 - TechXchange - Runtimes - Lab - Guidance" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            2024 - TechXchange - Runtimes - Lab - Guidance
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Liberty Getting Started
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="2024 - TechXchange - Runtimes - Lab - Guidance" class="md-nav__button md-logo" aria-label="2024 - TechXchange - Runtimes - Lab - Guidance" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    2024 - TechXchange - Runtimes - Lab - Guidance
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1024 Liberty Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Liberty dev mode Demo
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Liberty dev mode Demo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Liberty Dev Mode/01 Environment Setup Guide.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Demo Environment Setup Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Liberty Dev Mode/02 Demo Guide.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Demo Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-collection-assessments-deployment-accelerators" class="md-nav__link">
+    <span class="md-ellipsis">
+      data collection, assessments, &amp; deployment accelerators
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#liberty-getting-started-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Liberty Getting Started tasks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Objective
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-accessing-the-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Accessing the environment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-tips-for-working-in-the-lab-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Tips for working in the lab environment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-execute-lab-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Execute Lab Tasks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Execute Lab Tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-verify-the-installed-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Verify the installed software
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-create-the-required-working-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Create the required working directories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-develop-a-liberty-web-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Develop a Liberty web application
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#631-create-a-starter-app-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3.1 Create a starter app project.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#632-inspect-the-starter-project-using-open-visual-studio-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3.2. Inspect the starter project using Open Visual Studio Code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#633-adjust-the-liberty-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3.3 Adjust the Liberty configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#634-using-liberty-dev-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3.4 Using Liberty Dev Mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#635-edit-the-simpleweb-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3.5 Edit the simpleweb application
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#636-export-the-developed-application-as-war-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3.6 Export the developed application as WAR file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#637-create-a-server-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3.7 Create a server package
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#638-recap" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3.8 Recap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-liberty-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 Liberty operations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#641-explore-the-server-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4.1 Explore the server package
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6411-extract-liberty-package-from-command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4.1.1 Extract Liberty package from command line
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6412-liberty-dynamic-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4.1.2 Liberty dynamic updates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#642-create-liberty-configuration-snippets" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4.2 Create Liberty configuration snippets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6421-use-variables-for-portability" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4.2.1 Use variables for portability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6422-use-includes-for-better-re-use-and-visibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4.2.2 Use includes for better re-use and visibility
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6423-enable-transport-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4.2.3 Enable transport security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6424-backup-the-generated-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4.2.4 Backup the generated files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6425-recap" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4.2.5 Recap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-liberty-administration" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5 Liberty Administration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#651-install-liberty-from-scratch" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.1 Install Liberty from scratch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#652-introducing-liberty-environment-variable-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.2 Introducing Liberty Environment Variable Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#653-create-a-liberty-server-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.3 Create a Liberty server instance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#654-install-required-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.4 Install required features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#655-use-your-own-keystore" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.5 Use your own keystore
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#656-verify-that-the-server-configuration-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.6 Verify that the server configuration works:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#657-deploying-a-sample-application-to-liberty" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.7 Deploying a sample application to Liberty
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#658-change-logging-and-tracing-by-using-configdropins" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.8 Change logging and tracing by using ConfigDropins
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#659-review-the-liberty-configuration-via-liberty-rest-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.9 Review the Liberty configuration via Liberty REST APIs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6510-using-the-liberty-admincenter" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.10 Using the Liberty AdminCenter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6511-customizing-liberty-jvm-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.11 Customizing Liberty JVM Options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6512-recap" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.12 Recap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-lab-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Lab Cleanup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<div><h1 id="liberty-getting-started">Liberty Getting Started</h1>
+<h2 id="data-collection-assessments-deployment-accelerators">data collection, assessments, &amp; deployment accelerators</h2>
+<p><img alt="banner" src="./images/media/OpenLiberty.png"> </p>
+<p><strong>Last updated:</strong> March 2024</p>
+<p><strong>Duration:</strong> 90 minutes</p>
+<p>Need support? Contact <strong>Lars Besselmann, Kevin Postreich</strong></p>
+<h2 id="liberty-getting-started-tasks">Liberty Getting Started tasks</h2>
+<p>WebSphere Liberty (<strong>Liberty</strong>) is a lightweight open framework for building fast and efficient cloud-native Java microservices. Build cloud-native apps and microservices while running only what you need. It is the most flexible server runtime available to Java developers in this solar system.</p>
+<p>Liberty is built on the open source Open Liberty codebase. Open Liberty is designed with both developers and application business owners in mind.</p>
+<ul>
+<li>It delivers the latest Java APIs and integrates with the most popular Developer and Build tools.</li>
+<li>It has built-in innovation like zero-migration to reduce application runtime costs and delivery effort.</li>
+<li>Liberty is downstream of Open Liberty so anything that works on Open Liberty works on Liberty.</li>
+<li>Same Monthly Continuous Delivery Release Cycle as Liberty</li>
+<li>You do not need to switch to Liberty for commercial support</li>
+</ul>
+<p><strong>Liberty Tools</strong> is a set of intuitive developer tools for the Eclipse IDE, Visual Studio Code, and IntelliJ IDEA development environments. These tools adopt a Maven/Gradle-centric approach and enable fast, iterative cloud-native Java application development through Liberty dev mode.
+Liberty Tools also provides helpful, time-saving features such as code completion, hover descriptions, and configuration diagnostics for Jakarta EE APIs, MicroProfile APIs, and Liberty configuration. For more information, check out the Liberty Tools overview.</p>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>In the lab, there will be different roles involved with perform different tasks using different tools. You will perform all the different roles during the lab. </p>
+<ul>
+<li>You will start as an application developer and use Liberty starter and the code assistant to develop a simple web application. But don't worry, you do not have to be a developer to do this.</li>
+<li>As Liberty configuration opertor, you will use the configuration assistant and concepts like includes and variables to create a portable configuration. </li>
+<li>As Liberty administrator, you will install Liberty from a kernel image, add missing features, configure logging, security and so on, will use the Liberty REST APIs to review the configuration and use Liberty Admin Center for monitoring.</li>
+</ul>
+<h2 id="2-objective">2. Objective</h2>
+<p>These are the objectives in the lab:</p>
+<ul>
+<li>
+<p>As application developer:</p>
+<ul>
+<li>Tasks: <ul>
+<li>Develops the application.</li>
+<li>Creates a basic Liberty configuration for the application</li>
+</ul>
+</li>
+<li>Tools:<ul>
+<li>Apache Maven <ul>
+<li>to build the project </li>
+<li>to download the Open Liberty server runtime from the maven repository</li>
+</ul>
+</li>
+<li>Liberty Maven Plugin for inner-loop development via Liberty Dev Mode<ul>
+<li>to build the application war and deploy it to Liberty</li>
+</ul>
+</li>
+<li>Visual Studio Code <ul>
+<li>as IDE to build the application code</li>
+</ul>
+</li>
+<li>Liberty Tools plugin for Visual Studio Code<ul>
+<li>provides a Liberty dashboard with Dev Mode integration in the IDE</li>
+<li>provides Jakarta EE and MicroProfile code assistance</li>
+<li>provides Liberty configuration assistance</li>
+</ul>
+</li>
+<li>Liberty Starter Project <ul>
+<li>to generate a maven project for Liberty </li>
+</ul>
+</li>
+<li>Open Liberty / WebSphere Liberty<ul>
+<li>as runtime for the Java application that will be developed</li>
+<li>to create a server package</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>As Liberty configuration operator:</p>
+<ul>
+<li>Tasks: <ul>
+<li>Extract Liberty package from command line and implement Liberty dynamic updates</li>
+<li>Develop portable Liberty configuration snippets using includes, variables and much more.</li>
+</ul>
+</li>
+<li>Tools:<ul>
+<li>Visual Studio Code with Liberty Tools plugin as editor with configuration assistance</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>As Liberty administrator:</p>
+<ul>
+<li>Tasks: <ul>
+<li>Installs Liberty</li>
+<li>Configures Liberty for the target application using Liberty configuration snippets</li>
+<li>Applies security to harden the Liberty configuration</li>
+<li>Configure logging using configDropins</li>
+<li>Review the configuration using LIberty REST APIs</li>
+<li>Monitor Liberty using the Admin Center</li>
+</ul>
+</li>
+<li>Tools:<ul>
+<li>Liberty server command to create a Liberty instance and start, stop or dump it</li>
+<li>Liberty installUtility to install missing features</li>
+<li>Liberty securityUtility to create a keystore or encode a password</li>
+<li>Liberty REST APIs and Admin Center</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-prerequisites">3. Prerequisites</h2>
+<p>The following prerequisites must be completed prior to beginning this
+lab:</p>
+<ul>
+<li>Familiarity with basic Linux commands</li>
+<li>Have internet access</li>
+<li>Have a lab environment ready</li>
+</ul>
+<h2 id="4-accessing-the-environment">4. Accessing the environment</h2>
+<p>If you are doing this lab as part of an instructor led workshop (virtual or face to face), an environment has already been provisioned for you. The instructor will provide the details for accessing the lab environment.</p>
+<p>Otherwise, you will need to reserve an environment for the lab. You can obtain one here. Follow the on-screen instructions for the “<strong>Reserve now</strong>” option.</p>
+<p><a href="https://TBD-to-the-reservation-link">https://TBD-to-the-reservation-link</a></p>
+<p>The lab environment contains one (1) Linux VM, named Workstation.</p>
+<p><kbd><img alt="" src="./images/media/workstation.png"></kbd></p>
+<p><br></p>
+<ol>
+<li>
+<p>Access the lab environment from your web browser. </p>
+<p>A <code>Published Service</code> is configured to provide access to the <strong><code>Workstation</code></strong> VM through the noVNC interface for the lab environment.</p>
+<p>a. When the demo environment is provisioned, click on the <strong><code>environment tile</code></strong> to open its details view. </p>
+<p>b. Click on the <strong><code>Published Service</code></strong> link which will display a <strong>Directory listing</strong>  </p>
+<p>c. Click on the <strong><code>vnc.html</code></strong> link to open the lab environment through the <strong>noVNC</strong> interface. </p>
+<p><kbd><img alt="" src="./images/media/vnc-link.png"></kbd></p>
+<p>d. Click the <strong><code>Connect</code></strong> button </p>
+<p><kbd><img alt="" src="./images/media/vnc-connect.png"></kbd></p>
+<p>e. Enter the password as:  <strong><code>passw0rd</code></strong>. Then click the <strong><code>Send Credentials</code></strong> button to access the lab environment. </p>
+<blockquote>
+<p>Note: That is a numeric zero in passw0rd  </p>
+</blockquote>
+<p><kbd><img alt="" src="./images/media/vnc-password.png"></kbd></p>
+<p><br></p>
+</li>
+<li>
+<p>If prompted to Login to the "workstation" VM, use the credetials below: </p>
+<p>The login credentials for the <strong>workstation”</strong> VM is:</p>
+<ul>
+<li>
+<p>User ID: <strong>techzone</strong></p>
+</li>
+<li>
+<p>Password: <strong>IBMDem0s!</strong></p>
+</li>
+</ul>
+<blockquote>
+<p>Note: That is a numneric zero in the password</p>
+</blockquote>
+<p><br></p>
+<p><kbd><img alt="student vm screen" src="./images/media/techzone-user-pw.png"></kbd></p>
+<p><br></p>
+</li>
+</ol>
+<h2 id="5-tips-for-working-in-the-lab-environment">5. Tips for working in the lab environment</h2>
+<ol>
+<li>
+<p>You can resize the viewable area using the <strong>noVNC Settings</strong> options to resize the virtual desktop to fit your screen.</p>
+<p>a. From the environment VM, click on the <strong>twisty</strong> on the noNC control pane to open the menu.  </p>
+<p><kbd><img alt="fit to window" src="./images/media/vnc-twisty.png"></kbd></p>
+<p>b. To increase the visible area, click on <code>Settings &gt; Scaling Mode</code> and set the value to <code>Remote Resizing</code></p>
+<p><kbd><img alt="fit to window" src="./images/media/vnc-remote-resize.png"></kbd></p>
+</li>
+<li>
+<p>You can copy / paste text from the lab guide into the lab environment using the clipboard in the noVNC viewer. </p>
+<p>a. Copy the text from the lab guide that you want to paste into the lab environment</p>
+<p>b. Click the <strong><code>Clipboard</code></strong> icon and <strong><code>paste</code></strong> the text into the noVNC clipboard</p>
+<p><kbd><img alt="fit to window" src="./images/media/vnc-paste.png"></kbd></p>
+<p>c. Paste the text into the VM, such as to a terminal window, browser window, etc. </p>
+<p>d. Click on the <strong><code>clipboard</code></strong> icon again to close the clipboard</p>
+</li>
+<li>
+<p>An alternative to using the noVNC Copy / Paste option, you may consider opening the lab guide in a web browser inside of the VM. Using this method, you can easily copy / paste text from the lab guide without having to use the noVNC clipboard. </p>
+</li>
+<li>
+<p>To switch between different windows or get access the tool bar, click on the <strong><code>Activities</code></strong> icon within the VM.</p>
+<p><kbd><img alt="fit to window" src="./images/media/Activities.png"></kbd></p>
+<p>Then select from the tool bar the application that you want to open. In the lab, you will use Firefox and the terminal.</p>
+<p><kbd><img alt="Toolbar" src="./images/media/Toolbar.png"></kbd></p>
+</li>
+<li>
+<p>How to change the background color 
+In the environment, the default background for terminal windows and Visual Studio Code is dark. For the lab documentation, we changed the color to light. Feel free to keep the background in light but if you want to change it to dark, here the explanation how it was changed.</p>
+<ol>
+<li>
+<p>How to change the terminal background to white
+    Right-click into the terminal background, then select Preferences.</p>
+<p><kbd><img alt="Terminal-change-background1" src="./images/media/Terminal-change-background1.png"></kbd></p>
+<p>A Preferences window opens. Click on Colors, then uncheck the box for  Use colors from system theme . (If you want to get back to dark, check the box again).</p>
+<p><kbd><img alt="Terminal-change-background2" src="./images/media/Terminal-change-background2.png"></kbd></p>
+<p>The terminal background should switch to white.</p>
+<p><kbd><img alt="Terminal-change-background3" src="./images/media/Terminal-change-background3.png"></kbd></p>
+<p>Close the Preferences window.</p>
+</li>
+<li>
+<p>How to switch the background of Visual Studio Code from dark to light</p>
+<p>In a terminal Window, run the following command to start Visual Studio Code</p>
+<div class="highlight"><pre><span></span><code>mkdir ~/temp
+code ~/temp
+</code></pre></div>
+<p><kbd><img alt="start-VSCode" src="./images/media/start-VSCode.png"></kbd></p>
+<p>Visual Studio Code opens with a dark background. 
+Click on  Yes, I trust the authors </p>
+<p><kbd><img alt="VSCode-trust" src="./images/media/VSCode-trust.png"></kbd></p>
+<p>Then select Preferences &gt; Theme &gt; Color Theme</p>
+<p><kbd><img alt="VSCode-Theme" src="./images/media/VSCode-Theme.png"></kbd></p>
+<p>Select Light</p>
+<p><kbd><img alt="VSCode-Theme-light" src="./images/media/VSCode-Theme-light.png"></kbd></p>
+<p>The tool will change to a light background, see below.</p>
+<p><kbd><img alt="VSCode-light" src="./images/media/VSCode-light.png"></kbd></p>
+<p>Close Visual Studio Code.</p>
+</li>
+</ol>
+</li>
+</ol>
+<p><br>    </p>
+<h2 id="6-execute-lab-tasks">6. Execute Lab Tasks</h2>
+<h3 id="61-verify-the-installed-software">6.1 Verify the installed software</h3>
+<ol>
+<li>
+<p>Open a terminal by clicking on Activities and selecting terminal.</p>
+<p><kbd><img alt="Toolbar_terminal" src="./images/media/Toolbar_terminal.png"></kbd></p>
+<p>The terminal window opens.</p>
+<p><kbd><img alt="Terminal" src="./images/media/Terminal.png"></kbd></p>
+</li>
+<li>
+<p>Check the Maven version via the following command:</p>
+<div class="highlight"><pre><span></span><code>mvn -version
+</code></pre></div>
+<p><kbd><img alt="mvn-v" src="./images/media/mvn-v.png"></kbd></p>
+</li>
+<li>
+<p>Check the Docker version via the following command:</p>
+<div class="highlight"><pre><span></span><code>docker -v
+</code></pre></div>
+<p><kbd><img alt="docker-v" src="./images/media/docker-v.png"></kbd></p>
+</li>
+<li>
+<p>Check the Git version via the following command:</p>
+<div class="highlight"><pre><span></span><code>git -v
+</code></pre></div>
+<p><kbd><img alt="git-v" src="./images/media/git-v.png"></kbd></p>
+</li>
+</ol>
+<h3 id="62-create-the-required-working-directories">6.2 Create the required working directories</h3>
+<ol>
+<li>Create the Student directories and some sub-directories used in the lab with commands:<div class="highlight"><pre><span></span><code>mkdir ~/Student
+mkdir ~/Student/dev
+mkdir ~/Student/ops
+mkdir ~/Student/assets
+</code></pre></div>
+</li>
+</ol>
+<h3 id="63-develop-a-liberty-web-application">6.3 Develop a Liberty web application</h3>
+<p>The objective of this section is to develop a simple web application for Liberty. You will use a <strong>Liberty starter application</strong> to now start from scratch and use Visual Studio Code and Liberty Tools to build the application.</p>
+<h3 id="631-create-a-starter-app-project">6.3.1 Create a starter app project.</h3>
+<p>In this scenario, you want to create a Jakarta EE 10 Web application with the name <strong>simpleweb</strong> and will use maven to build it. The fastest way to get started is to use an Open Liberty starter application which generates a project with the maven configuration as well as a basic Liberty setup.</p>
+<p><kbd><img alt="LibertyStarter" src="./images/media/LibertyStarter.png"></kbd></p>
+<p>The <strong>Open Liberty starter</strong> gives you a simple, quick way to get the necessary files to start building an application on Open Liberty. There is no need to search how to find out what to add to your maven or gradle build files. A simple <strong>RestApplication.java</strong> file is generated for you to start creating a REST based application. A <strong>server.xml</strong> configuration file is provided with the necessary features for the MicroProfile and Jakarta EE versions that you previously selected. </p>
+<ol>
+<li>
+<p>Open a browser window by clicking on <strong>Activities</strong> and then select the <strong>Firefox</strong> browser icon.</p>
+<p><kbd><img alt="Toolbar_firefox" src="./images/media/Toolbar_firefox.png"></kbd></p>
+<p>If you get a pop-up that Authentication is required, enter <strong>IBMDem0s!</strong>. </p>
+<p><kbd><img alt="Authentication-required" src="./images/media/Authentication-required.png"></kbd></p>
+</li>
+<li>
+<p>Enter the URL <strong>https://openliberty.io/start/</strong>   </p>
+</li>
+</ol>
+<table>
+<tbody>
+<tr class="odd">
+<td><kbd><img src="./images/media/info.png" alt="sign-info"></kbd></td>
+<td>
+<p>If the page does not open, close the browser and open it again.
+</p></td>
+</tr>
+</tbody>
+</table>
+
+<ol start="3">
+<li>
+<p>Change the artifact name to <strong>simpleweb</strong>, change the Java level to <strong>17</strong> and leave the rest as is, then click on <strong>Generate project</strong> </p>
+<p><kbd><img alt="LibertyStarter-simpleweb" src="./images/media/LibertyStarter-simpleweb.png"></kbd></p>
+</li>
+<li>
+<p>Click on <strong>Save</strong> to save the project under Downloads.</p>
+<p><kbd><img alt="LibertyStarter-simpleweb-save" src="./images/media/LibertyStarter-simpleweb-save.png"></kbd></p>
+<p>You will see a pop-up like the one below. Click on <strong>Got it!</strong>  to close the window.</p>
+<p><kbd><img alt="LibertyStarter-simpleweb-save2" src="./images/media/LibertyStarter-simpleweb-save2.png"></kbd></p>
+</li>
+<li>
+<p>Extract the file.</p>
+<p>a. Click on <strong>Activities</strong> and switch to the terminal window. </p>
+<p>b. Move the starter project to the developer directory and extract it with commands:</p>
+<div class="highlight"><pre><span></span><code>mv ~/Downloads/simpleweb.zip ~/Student/dev
+unzip ~/Student/dev/simpleweb.zip -d ~/Student/dev/simpleweb
+</code></pre></div>
+<p><kbd><img alt="image020" src="./images/media/image020.png"></kbd></p>
+<p>The project has been created under <strong>~/Student/dev/simpleweb</strong> directory.</p>
+<p>c. List the content via following command:</p>
+<div class="highlight"><pre><span></span><code>ls -lrt ~/Student/dev/simpleweb
+</code></pre></div>
+<p><kbd><img alt="image021" src="./images/media/image021.png"></kbd></p>
+</li>
+</ol>
+<h3 id="632-inspect-the-starter-project-using-open-visual-studio-code">6.3.2. Inspect the starter project using Open Visual Studio Code</h3>
+<p>Now you will use Visual Studio Code to see what has been generated as part of the starter project.</p>
+<ol>
+<li>
+<p>From the terminal window, start Visual Studio Code</p>
+<div class="highlight"><pre><span></span><code>cd ~/Student/dev/simpleweb/
+code .
+</code></pre></div>
+<p><kbd><img alt="image022" src="./images/media/image022.png"></kbd></p>
+<p>Visual Studio Code UI will be opened.</p>
+</li>
+<li>
+<p>Click on <strong>Yes, I trust the authors</strong> to continue.</p>
+<p><kbd><img alt="image023" src="./images/media/image023.png"></kbd></p>
+<p>If you see during the lab one of the pop-ups below or any other pop-up asking to install something, close the pop-up without installation by clicking the X.
+<kbd><img alt="image024" src="./images/media/image024.png"></kbd>
+<kbd><img alt="image025" src="./images/media/image025.png"></kbd></p>
+</li>
+<li>
+<p>Investigate into the generated project:</p>
+<p>In Visual Studio Code, take a look at the <strong>Explorer</strong> section to see the content of the project.
+You can find a src and a target folder, a Dockerfile and a maven build file (pom.xml).</p>
+<p><kbd><img alt="image026" src="./images/media/image026.png"></kbd></p>
+</li>
+<li>
+<p>Take a look at the generated Maven configuration </p>
+<p>a. Click on <strong>pom.xml</strong> to see the maven pom.</p>
+<p>In the build section, you can find the configuration of the liberty-maven-plugin.
+<kbd><img alt="image027" src="./images/media/image027.png"></kbd></p>
+</li>
+</ol>
+<table>
+<tbody>
+<tr class="odd">
+<td><kbd><img src="./images/media/info.png" alt="sign-info"></kbd></td>
+<td>
+<p>Don’t worry if the version of the plugin has changed to 3.10.2 or later.
+</p></td>
+</tr>
+</tbody>
+</table>
+
+<div class="highlight"><pre><span></span><code>b. Finally close the pom.xml.
+</code></pre></div>
+<ol start="5">
+<li>
+<p>Review the generated Liberty configuration</p>
+<p>a.  Open <strong>src &gt;  main &gt;liberty &gt; config &gt; server.xml</strong> to see the Liberty configuration.</p>
+<p><kbd><img alt="image028" src="./images/media/image028.png"></kbd></p>
+<p>As you can see, the features for <strong>jakartaee-10</strong> and <strong>MicroProfile-6.1</strong> have been configured.</p>
+<p><kbd><img alt="image029" src="./images/media/image029.png"></kbd></p>
+<p>b. Scroll down and you can see that the http endpoint and the web application have been configured.</p>
+<p><kbd><img alt="image030" src="./images/media/image030.png"></kbd></p>
+</li>
+</ol>
+<h3 id="633-adjust-the-liberty-configuration">6.3.3 Adjust the Liberty configuration</h3>
+<p>The <strong>simpleweb</strong> application will not require the full <strong>Jakarta EE 10</strong> standard but only the servlet specification.</p>
+<p>As best practice to optimize the footprint of the application runtime regarding memory and disk space and limit the number of potential vulnerabilities, you should define only the features that are required by the application. In this case, you are ging to replace the <strong>jakartaee-10</strong> feature with an appropriate servlet feature. </p>
+<ol>
+<li>
+<p>In the Visual Studio Code editor for <strong>server.xml</strong>, scroll up to the feature section.</p>
+</li>
+<li>
+<p>Delete the lines <strong>\<feature>jakartaee-10.0\</feature></strong> and <strong>\&lt; feature&gt;MicroProfile-6.1\</strong>.
+    Your <strong>featureManager</strong> section should now look like this:</p>
+<p><kbd><img alt="image031" src="./images/media/image031.png"></kbd></p>
+</li>
+<li>
+<p>Now you will use the <strong>Liberty configuration assistant</strong> to define the servlet feature. Place your cursor at the beginning of an empty line in the featureManager section. Then press the <strong>CTRL key</strong> and press <strong>SPACE</strong> to activate the configuration assistant. You should see something like:</p>
+<p><kbd><img alt="image032" src="./images/media/image032.png"></kbd></p>
+</li>
+</ol>
+<table>
+<tbody>
+<tr class="odd">
+<td><kbd><img src="./images/media/info.png" alt="sign-info"></kbd></td>
+<td>
+<p>You might have to click on the arrow right to feature to get the description.
+</p></td>
+</tr>
+</tbody>
+</table>
+
+<ol start="4">
+<li>
+<p>Select <strong>feature</strong> and the feature element gets added.</p>
+<p><kbd><img alt="image033" src="./images/media/image033.png"></kbd></p>
+</li>
+<li>
+<p>Use again <strong>CTRL+SPACE</strong> to get the list of available features.</p>
+<p><kbd><img alt="image034" src="./images/media/image034.png"></kbd></p>
+</li>
+<li>
+<p>Type the word <strong>servlet</strong> to see the available servlet features.</p>
+<p><kbd><img alt="image035" src="./images/media/image035.png"></kbd></p>
+</li>
+<li>
+<p>Use the arrow-down key to get the description for <strong>servlet-6.0</strong>.</p>
+<p><kbd><img alt="image036" src="./images/media/image036.png"></kbd></p>
+</li>
+<li>
+<p>Select the feature <strong>servlet-6.0</strong> and your configuration should now look like this:</p>
+<p><kbd><img alt="image037" src="./images/media/image037.png"></kbd></p>
+</li>
+<li>
+<p>For this part of the lab, you do not need to define a keystore or the basic registry, so you need to delete the generated entries.
+    Your configuration should now look like this:</p>
+<p><kbd><img alt="image038" src="./images/media/image038.png"></kbd></p>
+</li>
+<li>
+<p>Save the configuration by using <strong>CTRL+S</strong>.</p>
+</li>
+<li>
+<p>Close the <strong>server.xml</strong> file.</p>
+</li>
+</ol>
+<h3 id="634-using-liberty-dev-mode">6.3.4   Using Liberty Dev Mode</h3>
+<p>Liberty development mode, or dev mode, allows you to develop applications with any text editor or IDE by providing hot reload and deployment, on demand testing, and debugger support. Liberty Dev Mode is enabled through Maven and Gradle projects.</p>
+<p>Your code is automatically compiled and deployed to your running server, making it easy to iterate on your changes.</p>
+<p>You can run tests on demand or even automatically so that you can get immediate feedback on your changes. You can also attach a debugger at any time to debug your running application.</p>
+<p><kbd><img alt="LibertyDevMode" src="./images/media/LibertyDevMode.png"></kbd></p>
+<p>You can use the capabilities of Liberty dev mode inside and outside of an IDE. This provides you the flexibility of choice. In a terminal window, you would use Liberty in dev mode with maven using the command <strong>mvn liberty:dev</strong> or <strong>mvn liberty:devc</strong> if you want to develop in a container. </p>
+<p>In the lab environment, the Liberty tools plugin has been installed into Visual Studio Code. Therefore you will use the integrated Liberty dashboard instead. </p>
+<ol>
+<li>
+<p>In Visual Studio Code, expand the Liberty Dashboard.</p>
+<p><kbd><img alt="image040" src="./images/media/image040.png"></kbd></p>
+</li>
+<li>
+<p>Right-click on <strong>simpleweb</strong> and then <strong>start</strong> to start the server in dev mode.</p>
+<p><kbd><img alt="image041" src="./images/media/image041.png"></kbd></p>
+</li>
+<li>
+<p>A terminal opens within Visual Studio Code and you can see that the start of the build process gets triggered.</p>
+<p><kbd><img alt="image042" src="./images/media/image042.png"></kbd></p>
+</li>
+<li>
+<p>The Liberty plugin as well as the Liberty server artifacts get downloaded, then the server is ready for testing.</p>
+<p><kbd><img alt="image043" src="./images/media/image043.png"></kbd></p>
+</li>
+<li>
+<p>Switch to the browser window and enter the URL <strong>localhost:9080</strong>. You should see something like this:</p>
+<p><kbd><img alt="image044" src="./images/media/image044.png"></kbd></p>
+</li>
+</ol>
+<table>
+<tbody>
+<tr class="odd">
+<td><kbd><img src="./images/media/info.png" alt="sign-info"></kbd></td>
+<td>
+<p>If you get a pop-up with <strong>Authentication required</strong>, enter the password <strong>IBMDem0s!</strong> and click on <strong>Unlock</strong>.
+</p></td>
+</tr>
+</tbody>
+</table>
+
+<div class="highlight"><pre><span></span><code>Now, let’s create a simple web application.
+</code></pre></div>
+<h3 id="635-edit-the-simpleweb-application">6.3.5 Edit the simpleweb application</h3>
+<p>Now you will edit the <strong>simpleweb</strong> application which only consists of a servlet. Thanks to Liberty code assistant, you don't have to write the code on your own. </p>
+<ol>
+<li>
+<p>Switch to Visual Studio Code.</p>
+</li>
+<li>
+<p>In Visual Studio Code, expand the path to <strong>src/main/java/com/demo/rest</strong>, then <strong>right-click</strong> on <strong>demo</strong> and select <strong>New File</strong>.</p>
+<p><kbd><img alt="image045" src="./images/media/image045.png"></kbd></p>
+</li>
+<li>
+<p>Enter the name <strong>helloWorldServlet.java</strong> and press <strong>ENTER</strong>.</p>
+<p><kbd><img alt="image046" src="./images/media/image046.png"></kbd></p>
+</li>
+<li>
+<p>The file <strong>src/main/java/com/demo/helloWorldServlet.java</strong> is generated and opens in an editor.</p>
+<p><kbd><img alt="image047" src="./images/media/image047.png"></kbd></p>
+</li>
+<li>
+<p>Remove all code from the file. Then enter <strong>servlet</strong> and press <strong>CTRL+SPACE</strong>.</p>
+<p><kbd><img alt="image048" src="./images/media/image048.png"></kbd></p>
+</li>
+<li>
+<p>The code assistant offers some servlet methods for Jakarta EE. Select <strong>servlet_doget</strong>, and the required starter code gets generated.
+    As you can see, the fields that should be changed are highlighted.</p>
+<p><kbd><img alt="image049" src="./images/media/image049.png"></kbd></p>
+</li>
+<li>
+<p>Change the <strong>servletName</strong> to <strong>helloWorldServlet</strong> and the <strong>urlPatters</strong> to <strong>/helloWorld</strong>. The code should now look like this:</p>
+<p><kbd><img alt="image050" src="./images/media/image050.png"></kbd></p>
+</li>
+<li>
+<p>Press <strong>CTRL+S</strong> to save the code change. Take a look at the terminal output. As Liberty has been started in DevMode, the code changes are picked up automatically, the source gets compiled and Liberty gets updated.</p>
+<p><kbd><img alt="image051" src="./images/media/image051.png"></kbd></p>
+</li>
+<li>
+<p>Switch to the browser and open the URL <strong>localhost:9080/simpleweb/helloWorld</strong>. You should see the output of the created servlet.</p>
+<p><kbd><img alt="image052" src="./images/media/image052.png"></kbd></p>
+</li>
+<li>
+<p>Switch back to Visual Studio Code and change the source code of the servlet response text to something like this: <strong>helloWorld - Example HTTP GET request for HTTPServlet</strong></p>
+<p><kbd><img alt="image053" src="./images/media/image053.png"></kbd></p>
+</li>
+<li>
+<p>Save the changes and reload the page in the browser. The output should be updated.</p>
+<p><kbd><img alt="image054" src="./images/media/image054.png"></kbd></p>
+</li>
+<li>
+<p>Switch back to Visual Studio Code and close the editor for the file <strong>helloWorldServlet.java</strong>.</p>
+</li>
+</ol>
+<p>Final step as developer is to export the developed application as WAR file so that it can be used in the next part of the lab.</p>
+<h3 id="636-export-the-developed-application-as-war-file">6.3.6 Export the developed application as WAR file</h3>
+<p>Export the developed application so that it can be deployed to Liberty by the operations team.</p>
+<p>The generated maven pom by default does not generate a WAR file as it uses a “looseApplication” approach to optimize the inner-loop development experience. (For more details, see https://github.com/OpenLiberty/ci.maven). To change the default build behaviour, you need to adjust the pom.xml file and configure the Liberty maven plugin to generate a WAR by setting the property: <strong>\<looseapplication>false\</looseapplication></strong>.</p>
+<ol>
+<li>
+<p>Switch back to Visual Studio Code.</p>
+</li>
+<li>
+<p>In the Liberty dashboard, <strong>right-click</strong> on the <strong>simpleweb</strong> application and select <strong>Stop</strong> (or use <strong>CTRL+C</strong> on the terminal window instead).</p>
+<p><kbd><img alt="image055" src="./images/media/image055.png"></kbd></p>
+</li>
+<li>
+<p>Verify in the terminal that Liberty has been stopped.</p>
+<p><kbd><img alt="image056" src="./images/media/image056.png"></kbd></p>
+</li>
+<li>
+<p>In Visual Studio Code, open the file <strong>pom.xml</strong> and add to the Liberty plugin configuration the lines:</p>
+<div class="highlight"><pre><span></span><code>&lt;configuration&gt;
+&lt;looseApplication&gt;false&lt;/looseApplication&gt;
+&lt;/configuration&gt;
+</code></pre></div>
+<p><kbd><img alt="image057" src="./images/media/image057.png"></kbd></p>
+</li>
+<li>
+<p>If you would start Liberty now again in Dev Mode, the property looseApplication would be ignored and you would see a warning like this:   </p>
+<p><kbd><img alt="image058" src="./images/media/image058.png"></kbd></p>
+<p>Therefore, you must start Liberty in run mode to generate the WAR file. This can be done by entering in the terminal window the command:</p>
+<div class="highlight"><pre><span></span><code>mvn liberty:run
+</code></pre></div>
+<p><kbd><img alt="image059" src="./images/media/image059.png"></kbd></p>
+<p>As you can see in the screenshot above, maven has built the file <strong>simpleweb.war</strong> and stored it at <strong>~/Student/dev/simpleweb/target/</strong> directory.</p>
+</li>
+<li>
+<p>Scroll down and you can see that it has been installed into the directory ~/Student/dev/simpleweb/target/liberty/wlp/usr/servers/defaultServer/apps.</p>
+<p><kbd><img alt="image060" src="./images/media/image060.png"></kbd></p>
+</li>
+<li>
+<p>Feel free to test the application in the browser, then stop the Liberty instance by using <strong>CTRL+C</strong>.</p>
+</li>
+<li>
+<p>Close Visual Studio Code.</p>
+</li>
+</ol>
+<h3 id="637-create-a-server-package">6.3.7 Create a server package</h3>
+<p>For the next lab, you will need the WAR file as well as the <strong>server.xml</strong> which can be found in the created Liberty instance at: 
+<strong>~/Student/dev/simpleweb/target/liberty/wlp/usr/servers/defaultServer</strong>.</p>
+<p>More complex applications also depend on other files like utility jars, additional Liberty configuration files and JDBC drivers for example. </p>
+<p>So instead of copying the files one by one, you could create a server package that contains all files.</p>
+<p>What is a <strong>server package</strong>?
+A server package can contain only the user directory or the full application server.  </p>
+<p>The syntax of the server package command is: </p>
+<div class="highlight"><pre><span></span><code>server package server_name --archive=package_file_name.jar --include=all
+</code></pre></div>
+<p>With the option <strong>--include=all</strong>, the Liberty binaries as well as the usr directory get packaged.</p>
+<p>For more details and options, see https://www.ibm.com/docs/en/was-liberty/base?topic=line-packaging-liberty-server-from-command.</p>
+<ol>
+<li>
+<p>To create the server package, execute the following command:</p>
+<div class="highlight"><pre><span></span><code>~/Student/dev/simpleweb/target/liberty/wlp/bin/server package defaultServer --archive=simpleweb-serverpackage.jar --include=all
+</code></pre></div>
+<p><kbd><img alt="image061" src="./images/media/image061.png"></kbd></p>
+</li>
+<li>
+<p>To hand over the server package to the ops team, use the following commands: </p>
+<div class="highlight"><pre><span></span><code>cp ~/Student/dev/simpleweb/target/liberty/wlp/usr/servers/defaultServer/simpleweb-serverpackage.jar ~/Student/assets
+</code></pre></div>
+</li>
+</ol>
+<h3 id="638-recap">6.3.8 Recap</h3>
+<p>Congratulations, you have finished the application development part.</p>
+<p><strong>Let’s recap what you did so far.</strong> </p>
+<p>You acted as developer and used Visual Studio Code and the Liberty Tools for these tasks:</p>
+<ul>
+<li>generated a Liberty starter project including the required maven and Liberty configuration. </li>
+<li>used the Liberty Tools configuration assistant to adjust the Liberty configuration.</li>
+<li>used Liberty Dev Mode for inner-loop development.</li>
+<li>updated the simpleweb application using the Jakarta EE code assistant. </li>
+<li>exported the web application as WAR file.</li>
+<li>created a server package including application and Liberty binaries.</li>
+</ul>
+<p>Useful links: https://github.com/OpenLiberty/liberty-tools-vscode/blob/HEAD/docs/user-guide.md </p>
+<h3 id="64-liberty-operations">6.4 Liberty operations</h3>
+<p>Now you will work with Liberty from an operational point of view. Development has handed over a Liberty server package to you. The server package contains all necessary configuration to run the application called <strong>simpleweb</strong>. The provided server package is typically not production-ready, as it is likely not portable between stages and does not fulfill the requirements regarding security and so on. </p>
+<p>In this part of the lab, you will explore how to create configuration snippets and how to administer Liberty from the command line. But first you will explore the server package and get an understanding about dynamic updates.</p>
+<h3 id="641-explore-the-server-package">6.4.1 Explore the server package</h3>
+<p>You will now explore the Liberty server package to get a better understanding how to use it, in addition you will use it to learn more about <strong>Liberty administration from the command line</strong> and <strong>Liberty dynamic updates</strong>.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td><kbd><img src="./images/media/info.png" alt="sign-info"></kbd></td>
+<td>
+<p>In this section, you will use the <strong>server run</strong> command instead of the <strong>server start</strong> command. This will allow you to see the logs immediately instead of having to use a tail command. It will also allow you to stop the Liberty server via <strong>CTRL+C</strong>
+</p></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="6411-extract-liberty-package-from-command-line">6.4.1.1 Extract Liberty package from command line</h3>
+<ol>
+<li>
+<p>Extract the Liberty server package and try to run it. When asked, enter <strong>test</strong> as target directory.</p>
+<div class="highlight"><pre><span></span><code>cd ~/Student/ops/
+java -jar ~/Student/assets/simpleweb-serverpackage.jar
+</code></pre></div>
+<p><kbd><img alt="image062" src="./images/media/image062.png"></kbd></p>
+<p>The directory test/wlp got created and contains the configured Liberty instance including application. </p>
+</li>
+<li>
+<p>Run the following command to <strong>get the Liberty version</strong>:</p>
+<div class="highlight"><pre><span></span><code>test/wlp/bin/productInfo version
+</code></pre></div>
+<p><kbd><img alt="image063" src="./images/media/image063.png"></kbd></p>
+</li>
+<li>
+<p>Run the following command to <strong>list the Liberty features</strong> that have been installed:</p>
+<div class="highlight"><pre><span></span><code>test/wlp/bin/productInfo featureInfo
+</code></pre></div>
+<p><kbd><img alt="image064" src="./images/media/image064.png"></kbd></p>
+<p>As you can see, the server package provided by the developer only contains the <strong>servlet-6.0</strong> features which is the only feature required by the application. </p>
+</li>
+<li>
+<p>Run the following command to get the <strong>list of defined Liberty application servers</strong>:</p>
+<div class="highlight"><pre><span></span><code>test/wlp/bin/server list
+</code></pre></div>
+<p><kbd><img alt="image065" src="./images/media/image065.png"></kbd></p>
+</li>
+<li>
+<p><strong>Start the Liberty server instance</strong> by running the command:</p>
+<div class="highlight"><pre><span></span><code>test/wlp/bin/server start defaultServer
+</code></pre></div>
+<p><kbd><img alt="image066" src="./images/media/image066.png"></kbd></p>
+<p>This runs the server in the background and the output is written to files in the <strong>test/wlp/bin/servers/defaultServer/logs</strong> directory.</p>
+<p>To start the server in the foreground (so the console messages are displayed in the command window) you would use the command </p>
+<div class="highlight"><pre><span></span><code>test/wlp/bin/server run defaultServer.
+</code></pre></div>
+<p>You will use it later in the lab.</p>
+</li>
+<li>
+<p>View the Liberty server’s messages.log file to see the server startup messages via the command:</p>
+<div class="highlight"><pre><span></span><code>cat test/wlp/usr/servers/defaultServer/logs/messages.log
+</code></pre></div>
+<p><kbd><img alt="image067" src="./images/media/image067.png"></kbd></p>
+<p>At the beginning of the log, you can see that Open Liberty 24.0.0.2 is used.
+The server is started when the message <strong>“The defaultServer server is ready to run a smarter planet”</strong> is displayed in the messages.log file.</p>
+</li>
+<li>
+<p>Test that the application is accessible via URL <strong>http://localhost:9080/simpleweb/helloWorld</strong></p>
+<p><kbd><img alt="image068" src="./images/media/image068.png"></kbd></p>
+</li>
+</ol>
+<h3 id="6412-liberty-dynamic-updates">6.4.1.2 Liberty dynamic updates</h3>
+<p>Let’s do a short excurse about Liberty dynamic updates. You will use Visual Studio Code to perform some minor configuration changes. For this part of the lab, you could instead also use a simple text editor like vi or gedit instead. </p>
+<ol>
+<li>
+<p>Open Visual Studio Code.</p>
+<div class="highlight"><pre><span></span><code>cd ~/Student/ops/test
+code .
+</code></pre></div>
+<p><kbd><img alt="image069" src="./images/media/image069.png"></kbd></p>
+</li>
+<li>
+<p>Visual Studio Code opens. Click on <strong>Yes</strong>, if you are asked to trust the author.</p>
+<p><kbd><img alt="image070" src="./images/media/image070.png"></kbd></p>
+</li>
+<li>
+<p>In Visual Studio Code, open a terminal window</p>
+<p><kbd><img alt="image071" src="./images/media/image071.png"></kbd></p>
+</li>
+<li>
+<p>In the terminal, use the tail command to display the Liberty message log.</p>
+<div class="highlight"><pre><span></span><code>tail -f wlp/usr/servers/defaultServer/logs/messages.log
+</code></pre></div>
+<p><kbd><img alt="image072" src="./images/media/image072.png"></kbd></p>
+</li>
+<li>
+<p>Wait until the web application has been initialized</p>
+<p><kbd><img alt="image073" src="./images/media/image073.png"></kbd></p>
+</li>
+<li>
+<p>In Visual Studio Code, navigate to <strong>wlp &gt; usr &gt; servers &gt; defaultServer</strong> and open the file <strong>server.xml</strong>.</p>
+<p><kbd><img alt="image074" src="./images/media/image074.png"></kbd></p>
+</li>
+<li>
+<p>In the <strong>server.xml</strong> file, change the httpPort setting from port <strong>9080</strong> to port <strong>9081</strong>.</p>
+<p><kbd><img alt="image075" src="./images/media/image075.png"></kbd></p>
+<p>You can see in the terminal that the change is picked up and Liberty listens now on port <strong>9081</strong>.</p>
+<p><kbd><img alt="image076" src="./images/media/image076.png"></kbd></p>
+</li>
+<li>
+<p>Change the webApplication contextRoot setting from <strong>“/simpleweb”</strong> to <strong>“/mysimpleweb”</strong>.</p>
+<p><kbd><img alt="image077" src="./images/media/image077.png"></kbd></p>
+<p>You can see in the log that the change is picked up.</p>
+<p><kbd><img alt="image078" src="./images/media/image078.png"></kbd></p>
+</li>
+<li>
+<p>Switch to the browser and access the application via URL <strong>localhost:9081/mysimpleweb/helloWorld</strong>.</p>
+<p><kbd><img alt="image079" src="./images/media/image079.png"></kbd></p>
+<p>As you have seen, you can change the Liberty configuration without having to restart the server. 
+You will explore this further later in the lab when you dynamically update the logging for example.
+Now let's stop the server.</p>
+</li>
+<li>
+<p>In the terminal, press <strong>CTRL+C</strong> to stop the tail command. </p>
+</li>
+<li>
+<p>Stop the Liberty instance by executing in the terminal the command:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server stop defaultServer
+</code></pre></div>
+<p><kbd><img alt="image080" src="./images/media/image080.png"></kbd></p>
+</li>
+</ol>
+<h3 id="642-create-liberty-configuration-snippets">6.4.2 Create Liberty configuration snippets</h3>
+<p>There are different ways to create a Liberty server configuration and there are often different roles involved to get the final configuration for production. The application specific configuration, for example, is typically created by the application developer while security related configuration is typically done by operations. Operations is typically also responsible to make the configuration portable across stages, configure logging and so on. </p>
+<p>You could create Liberty configuration snippets by copying over the related snippets from the product documentation and adjust them in a normal text editor. In this part of the lab, you will see that the Liberty tools plugin in Visual Studio Code can help you to speed up the create of configuration snippets as it provides configuration assistance including documentation. Let’s get started.</p>
+<p>You will now modify the file <strong>server.xml</strong> which has been provided as part of the server package to make it more portable and re-usable.</p>
+<ol>
+<li>
+<p>In Visual Studio Code, open the file <strong>server.xml</strong> if you closed it previously.</p>
+<p><kbd><img alt="image081" src="./images/media/image081.png"></kbd></p>
+</li>
+<li>
+<p>Take a look at the httpEndpoint element.</p>
+<p><kbd><img alt="image082" src="./images/media/image082.png"></kbd></p>
+<p>As mentioned in the comment, the httpEndpoint is by default not accessible from a remote client.
+ This is good from security point of view and works fine if the client is local to the server. But if you, for example, use a remote load balancer or a remote HTTP server, this will not work. So there will be likely situations where you want to allow access to the application from a remote client and you must add a host attribute. You will use the Liberty Tools configuration assistant to do this.</p>
+</li>
+<li>
+<p>Place the cursor at the end of the line <strong>&lt;httpEndpoint id="defaultHttpEndpoint"</strong> and press <strong>ENTER</strong> to add another line. </p>
+<p>In the new line, press <strong>CTRL+SPACE</strong> to see the available attributes. </p>
+<p>Use the arrow-down key and navigate to the <strong>host</strong> attribute to see the description of the attribute.</p>
+<p><kbd><img alt="image083" src="./images/media/image083.png"></kbd></p>
+</li>
+<li>
+<p>Select host and your configuration should look like this:</p>
+<p><kbd><img alt="image084" src="./images/media/image084.png"></kbd></p>
+<p>As you can see, the attribute host defaults to <strong>localhost</strong>.</p>
+</li>
+</ol>
+<h3 id="6421-use-variables-for-portability">6.4.2.1 Use variables for portability</h3>
+<p>To make the configuration portable, you will replace the fixed values for ports and host with Liberty variables. Liberty variables can be defined with a default value and overridden from inside or outside Liberty. To show the concept, you will adjust the httpEndpoint settings.</p>
+<p>You could use the configuration snippet below to replace the existing httpEndpoint configuration with a portable configuration. </p>
+<div class="highlight"><pre><span></span><code>&lt;httpEndpoint id="defaultHttpEndpoint"
+              host="${httpEndpoint_host}"
+              httpPort="${httpEndpoint_port}"
+              httpsPort="${httpEndpoint_secure_port}" /&gt;
+&lt;variable name="httpEndpoint_host" defaultValue="*"/&gt;
+&lt;variable name="httpEndpoint_port" defaultValue="9080"/&gt;
+&lt;variable name="httpEndpoint_secure_port" defaultValue="9443"/&gt;
+</code></pre></div>
+<p>Instead you will use the Liberty configuration assistant to get an understanding how you could create such a configuration snippet.</p>
+<ol>
+<li>
+<p>Place the cursor in an empty line under the httpEndpoint section, then enter <strong>var</strong> and press <strong>CTRL+SPACE</strong>.</p>
+<p><kbd><img alt="image085" src="./images/media/image085.png"></kbd></p>
+</li>
+<li>
+<p>Select <strong>variable</strong>, then enter as name <strong>"httpEndpoint_port"</strong>.</p>
+<p><kbd><img alt="image086" src="./images/media/image086.png"></kbd></p>
+</li>
+<li>
+<p>Place the cursor after <strong>name="httpEndpoint_port"</strong>, enter a <strong>SPACE</strong> and press <strong>CTRL+SPACE</strong>.</p>
+<p><kbd><img alt="image087" src="./images/media/image087.png"></kbd></p>
+</li>
+<li>
+<p>Select <strong>defaultValue</strong> and enter as value <strong>9080</strong>.</p>
+<p><kbd><img alt="image088" src="./images/media/image088.png"></kbd> </p>
+</li>
+<li>
+<p>Use copy and paste to create two additional variables: </p>
+<ul>
+<li>one with the name <strong>"httpEndpoint_secure_port"</strong> and the default value <strong>"9443"</strong></li>
+<li>the other one with the name <strong>"httpEndpoint_host"</strong> and the value <strong>"*"</strong>.</li>
+</ul>
+<p>Your configuration should now look like this:</p>
+<p><kbd><img alt="image089" src="./images/media/image089.png"></kbd></p>
+</li>
+<li>
+<p>Switch to the <strong>httpEndpoint</strong> section, remove for the attribute <strong>host</strong> the value <strong>"localhost"</strong>, enter <strong>${ht</strong> and press <strong>CTRL+SPACE</strong>.</p>
+<p><kbd><img alt="image090" src="./images/media/image090.png"></kbd></p>
+<p>As you can see, the variable names are offered. </p>
+</li>
+<li>
+<p>Select <strong>"httpEndpoint_host"</strong>, then enter <strong>"}"</strong>. Your configuration should look like this:</p>
+<p><kbd><img alt="image090b" src="./images/media/image090b.png"></kbd></p>
+</li>
+<li>
+<p>Do the same kind of change for the attributes <strong>httpPort</strong> and <strong>httpsPort</strong>. </p>
+<p>Your final httpEndpoint configuration should now look like this:</p>
+<p><kbd><img alt="image091" src="./images/media/image091.png"></kbd></p>
+</li>
+<li>
+<p>Save your changes.</p>
+<p>Your <strong>server.xml</strong> file should now look like this:</p>
+<div class="highlight"><pre><span></span><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;server description="new server"&gt;
+
+&lt;!-- Enable features --&gt;
+&lt;featureManager&gt;
+    &lt;feature&gt;servlet-6.0&lt;/feature&gt;
+&lt;/featureManager&gt;
+
+&lt;!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" --&gt;
+&lt;httpEndpoint id="defaultHttpEndpoint"
+              host="${httpEndpoint_host}"
+              httpPort="${httpEndpoint_port}"
+              httpsPort="${httpEndpoint_secure_port}" /&gt;
+&lt;variable name="httpEndpoint_host" defaultValue="*"/&gt;
+&lt;variable name="httpEndpoint_port" defaultValue="9080"/&gt;
+&lt;variable name="httpEndpoint_secure_port" defaultValue="9443"/&gt;
+
+&lt;!-- Automatically expand WAR files and EAR files --&gt;
+&lt;applicationManager autoExpand="true"/&gt;
+
+&lt;!-- Configures the application on a specified context root --&gt;
+&lt;webApplication contextRoot="/mysimpleweb" location="simpleweb.war" /&gt;
+
+&lt;!-- Default SSL configuration enables trust for default certificates from the Java runtime --&gt;
+&lt;ssl id="defaultSSLConfig" trustDefaultCerts="true" /&gt;
+&lt;/server&gt;
+</code></pre></div>
+<p>Now let's test if the Liberty configuration is really portable.</p>
+</li>
+<li>
+<p>From the Visual Studio Code terminal, start the Liberty server instance via the following command:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server run defaultServer
+</code></pre></div>
+<p><kbd><img alt="image092" src="./images/media/image092.png"></kbd></p>
+<p>As you can see, the Liberty server gets started and listens on port <strong>9080</strong>.</p>
+</li>
+<li>
+<p>Press <strong>CTRL+C</strong> to stop the server. </p>
+</li>
+<li>
+<p>Set the httpEnpoint_port value in the Operating System environment variable and start the Liberty server again.</p>
+<div class="highlight"><pre><span></span><code>export httpEndpoint_port=9081
+wlp/bin/server run defaultServer
+</code></pre></div>
+<p><kbd><img alt="image093" src="./images/media/image093.png"></kbd></p>
+<p>As you can see, the Liberty server now listens on port <strong>9081</strong>, which shows that you can now override from outside Liberty the default settings defined in the Liberty server.xml file. In a Kubernetes environment, you could for example use a config map to change configuration settings.</p>
+</li>
+<li>
+<p>Press <strong>CTRL+C</strong> to stop the server. Then unset the operating system variable by the following command:</p>
+<div class="highlight"><pre><span></span><code>unset httpEndpoint_port
+</code></pre></div>
+<p>This will restore the httpEnpoint_port value in the Operating System environment variable to <strong>9080</strong>.</p>
+</li>
+</ol>
+<h3 id="6422-use-includes-for-better-re-use-and-visibility">6.4.2.2 Use includes for better re-use and visibility</h3>
+<p>If you configure a Liberty server with resources like datasources or JMS queues, user registry and more, your configureation file can get quite long and not easy to be read and maintained. Liberty allows to specify configuration resources to get included into the server configuration. This helps to keep control over the configuration, provides better reuse of the different configuration and allows to split the responsibility for the configuration between different teams. The developer for example could create the application specific configuration and operations the security configuration.</p>
+<p>You will now use <strong>includes</strong> to structure the server configuration.</p>
+<ol>
+<li>
+<p>In the terminal in Visual Studio Code, copy the existing server.xml file into a new file called application-config.xml.</p>
+<div class="highlight"><pre><span></span><code>cp wlp/usr/servers/defaultServer/server.xml wlp/usr/servers/defaultServer/application-config.xml
+</code></pre></div>
+<p><kbd><img alt="image094" src="./images/media/image094.png"></kbd></p>
+</li>
+<li>
+<p>Open the newly created file <strong>application-config.xml</strong> in Visual Studio Code.</p>
+<p><kbd><img alt="image095" src="./images/media/image095.png"></kbd></p>
+</li>
+<li>
+<p>Remove all configuration inside the server section other than the definition of the <strong>webApplication</strong> element.
+    Your <strong>application-config.xml</strong> should look like this:</p>
+<p><kbd><img alt="image096" src="./images/media/image096.png"></kbd></p>
+</li>
+<li>
+<p>Save the changes, then close the <strong>application-config.xml</strong> file.</p>
+</li>
+<li>
+<p>Switch to the server.xml file. Delete the <strong>webApplication</strong> element, then enter <strong>include</strong> and press <strong>CTRL+SPACE</strong>.</p>
+<p>The Liberty configuration assistant shows you the available elements.</p>
+<p><kbd><img alt="image097" src="./images/media/image097.png"></kbd></p>
+</li>
+<li>
+<p>Select <strong>include</strong> and the element gets generated. As value for <strong>location</strong>, enter <strong>"application-config.xml"</strong>.</p>
+<p><kbd><img alt="image098" src="./images/media/image098.png"></kbd></p>
+</li>
+<li>
+<p>As the owner of the server.xml file, you might want to decide what happens if the file to be included does not exist or contains conflicting configuration settings. </p>
+<p>Go to the end of the include statement and press <strong>CTRL+SPACE</strong>. The available attributes for the include element are displayed.</p>
+<p><kbd><img alt="image099" src="./images/media/image099.png"></kbd></p>
+<p>As you can see, you could define the include file as optional, so Liberty would not throw an error if the include file is missing. </p>
+</li>
+<li>
+<p>Click on <strong>onConflict</strong> to see the available attributes for that options. </p>
+<p><kbd><img alt="image100" src="./images/media/image100.png"></kbd></p>
+<p>If you want to make sure, that settings in the server.xml cannot be overridden by included files, select <strong>IGNORE</strong>, otherwise use <strong>MERGE</strong> or <strong>REPLACE</strong>. </p>
+</li>
+<li>
+<p>Click on <strong>MERGE</strong> and your include statement should look like this:</p>
+<div class="highlight"><pre><span></span><code>&lt;include location="application-config.xml" onConflict="MERGE"/&gt;
+</code></pre></div>
+<p><kbd><img alt="image101" src="./images/media/image101.png"></kbd></p>
+<p>You can configure multiple include files, for example one file for security-config.xml and another one for resource specific configuration settings like for databases or JMS. Now let's test if the <strong>include</strong> works.</p>
+</li>
+<li>
+<p>Save the <strong>server.xml</strong> file.</p>
+</li>
+<li>
+<p>From the Visual Studio Code terminal, start the Liberty server instance via the following command:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server run defaultServer
+</code></pre></div>
+<p>As you can see, the <strong>include</strong> has been found and processed, so that the application is started.</p>
+<p><kbd><img alt="image102" src="./images/media/image102.png"></kbd></p>
+<p>Keep the server running as we need it in the next section.</p>
+</li>
+</ol>
+<h3 id="6423-enable-transport-security">6.4.2.3 Enable transport security</h3>
+<p>Right now, you are not able to access Liberty via HTTPS. While the HTTPS port 9443 has been defined, SSL has not been enabled in Liberty. SSL can be enabled using the transport security feature. So the next step is to enable transport security and take a look at other related topics like keystores.</p>
+<ol>
+<li>
+<p>In the file <strong>server.xml</strong>, navigate the to featureManager section.</p>
+</li>
+<li>
+<p>Add the feature <strong>transportSecurity-1.0</strong> to the <strong>featureManager</strong> section by add the line:</p>
+<div class="highlight"><pre><span></span><code>&lt;feature&gt;transportSecurity-1.0&lt;/feature&gt;
+</code></pre></div>
+<p>Alternatively, you can use the configuration assistant to enable it.</p>
+<p><kbd><img alt="image103" src="./images/media/image103.png"></kbd></p>
+</li>
+<li>
+<p>Take a look at the logs and you can see that the feature is not available yet.</p>
+<p><kbd><img alt="image104" src="./images/media/image104.png"></kbd></p>
+<p>This is due to the fact that the Liberty server package generated by the developer only includes the required features (features that have been defined in the server configuration file). You will use the Liberty <strong>featureUtility tool</strong> to install the missing feature. The feature could be downloaded from a local repository if configured, in this case you will download it from a central maven repository.</p>
+</li>
+<li>
+<p>In the terminal window, stop the Liberty instance by pressing <strong>CTRL+C</strong>.</p>
+<p>Then execute the following command to install the missing feature from the maven repository:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/featureUtility installFeature transportSecurity-1.0
+</code></pre></div>
+<p><kbd><img alt="image105" src="./images/media/image105.png"></kbd></p>
+</li>
+<li>
+<p>Then start the Liberty instance again by running the following command:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server run defaultServer
+</code></pre></div>
+<p><kbd><img alt="image106" src="./images/media/image106.png"></kbd></p>
+<p>As you can see, Liberty created a certificate and placed it into the SSL key file <strong>"wlp/usr/servers/defaultServer/resources/security/key.p12"</strong>. </p>
+</li>
+<li>
+<p>Liberty used the variable <strong>keystore_password</strong> to secure the keystore. As you did not define a value for the variable keystore_password, Liberty generated a password and stored it in the <strong>server.env</strong> file. In Visual Studio, open the <strong>server.env</strong> file to see the keystore password. Your password will likely look different as it has been generated randomly.</p>
+<p><kbd><img alt="image107" src="./images/media/image107.png"></kbd></p>
+<p>Close the <strong>server.env</strong> file.</p>
+</li>
+<li>
+<p>To make it more visible where the keystore password comes from, add the following definition to the <strong>server.xml</strong> file:</p>
+<div class="highlight"><pre><span></span><code>&lt;keyStore id="defaultKeyStore" password="${keystore_password}" /&gt;
+</code></pre></div>
+<p>The keyStore element also allows you to specify a different keystore location and much more.</p>
+<p><kbd><img alt="image108" src="./images/media/image108.png"></kbd></p>
+</li>
+<li>
+<p>Review your configuration in <strong>server.xml</strong>. It should look like this:</p>
+<div class="highlight"><pre><span></span><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;server description="new server"&gt;
+
+    &lt;!-- Enable features --&gt;
+    &lt;featureManager&gt;
+        &lt;feature&gt;servlet-6.0&lt;/feature&gt;
+        &lt;feature&gt;transportSecurity-1.0&lt;/feature&gt;
+    &lt;/featureManager&gt;
+
+    &lt;!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" --&gt;
+    &lt;httpEndpoint id="defaultHttpEndpoint"
+                host="${httpEndpoint_host}"
+                httpPort="${httpEndpoint_port}"
+                httpsPort="${httpEndpoint_secure_port}" /&gt;
+    &lt;variable name="httpEndpoint_host" defaultValue="*"/&gt;
+    &lt;variable name="httpEndpoint_port" defaultValue="9080"/&gt;
+    &lt;variable name="httpEndpoint_secure_port" defaultValue="9443"/&gt;
+
+    &lt;!-- Automatically expand WAR files and EAR files --&gt;
+    &lt;applicationManager autoExpand="true"/&gt;
+
+    &lt;!-- Configures the application on a specified context root --&gt;
+    &lt;include location="application-config.xml" onConflict="MERGE"/&gt;
+
+    &lt;!-- Default SSL configuration enables trust for default certificates from the Java runtime --&gt;
+    &lt;ssl id="defaultSSLConfig" trustDefaultCerts="true" /&gt;
+    &lt;keyStore id="defaultKeyStore" password="${keystore_password}" /&gt;
+&lt;/server&gt;
+</code></pre></div>
+</li>
+<li>
+<p>Now let's see if the application is accessible via HTTPS. </p>
+<p>Switch to the browser and access Liberty via <strong>https://localhost:9443/mysimpleweb/helloWorld</strong>.</p>
+<p>You should get a security warning like this:</p>
+<p><kbd><img alt="image109" src="./images/media/image109.png"></kbd></p>
+</li>
+<li>
+<p>Click on <strong>Advanced</strong>, then scroll down and click on <strong>"Accept the Risk and Continue"</strong>.</p>
+<p><kbd><img alt="image110" src="./images/media/image110.png"></kbd></p>
+</li>
+<li>
+<p>You should see the output of the web application.</p>
+<p><kbd><img alt="image111" src="./images/media/image111.png"></kbd></p>
+</li>
+<li>
+<p>Switch back to Visual Studio Code and stop the running Liberty instance by entering <strong>CTRL+C</strong> in the terminal window. </p>
+</li>
+<li>
+<p>Close Visual Studio Code.</p>
+</li>
+</ol>
+<h3 id="6424-backup-the-generated-files">6.4.2.4 Backup the generated files</h3>
+<p>You will re-use the generated configuration snippets and other assets in the next section of the lab. Therefore it is a good approach to create a snippet repository. Configuration snippets are typically hosted in a git repository or so, here you will use the folder <strong>~/Student/assets</strong>. You will also use the asset directory to store the application WAR file.</p>
+<ol>
+<li>
+<p>Copy the generated configuration files as well as the application war file into the assets directory.</p>
+<div class="highlight"><pre><span></span><code>cp ~/Student/ops/test/wlp/usr/servers/defaultServer/server.* ~/Student/assets
+
+cp ~/Student/ops/test/wlp/usr/servers/defaultServer/application-config.xml ~/Student/assets
+
+cp ~/Student/ops/test/wlp/usr/servers/defaultServer/apps/simpleweb.war ~/Student/assets
+</code></pre></div>
+<p><kbd><img alt="image112" src="./images/media/image112a.png"></kbd></p>
+</li>
+<li>
+<p>Verify that the assets directory contains the application WAR as well as the configuration files. It also contains the server package but this is no longer required.</p>
+<div class="highlight"><pre><span></span><code>ls ~/Student/assets
+</code></pre></div>
+<p><kbd><img alt="image112" src="./images/media/image112b.png"></kbd></p>
+</li>
+<li>
+<p>If not already done, exit <strong>Visual Studio Code</strong> and stop any running Liberty instance.</p>
+</li>
+</ol>
+<h3 id="6425-recap">6.4.2.5 Recap</h3>
+<p>In this section of the lab, you got an impression how to create and use configuration snippets:</p>
+<ul>
+<li>used the <strong>Liberty Tools configuration assistant</strong> to create configuration snippets and to configure Liberty. </li>
+<li>used the <strong>Liberty featureUtility tool</strong> to install missing features.</li>
+<li>learned how to use <strong>variables</strong> to make the configuration more portable.</li>
+<li>learned how to use <strong>includes</strong> to split the configuration into multiple re-usable files.</li>
+<li>created a security configuration. </li>
+</ul>
+<p>Comments:</p>
+<ul>
+<li>Instead of using the Liberty Tools configuration assistant in Visual Studio Code, you could also use the product documentation and copy &amp; paste to create Liberty configuration snippets. </li>
+<li>You could also use the IBM migration tools to transform an existing configuration for WebSphere Traditional and other runtimes into a Liberty configuration.</li>
+</ul>
+<h3 id="65-liberty-administration">6.5 Liberty Administration</h3>
+<p>Now let’s switch to Liberty Admistrator role and explor how to install and configure Liberty from an administrator point of view. </p>
+<p>A traditional administrator typically downloads the application server binaries from the IBM pages and uses a regular editor instead of an IDE like Visual Studio to configure Liberty. To download the latest version of WebSphere Liberty, the administrator can use the IBM support page https://www.ibm.com/support/pages/recommended-updates-websphere-application-server</p>
+<h3 id="651-install-liberty-from-scratch">6.5.1 Install Liberty from scratch</h3>
+<p>The best practice for Liberty installation is to create a minimal installation by using the Liberty kernel image and install only the required features on top of it. The latest WebSphere Liberty kernel image could be downloaded from the IBM support page. For simplicity, we will use the International License Agreement for Non-Warranted Programs (ILAN) package which is available as zip file at: https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/downloads/wlp/24.0.0.1/wlp-kernel-24.0.0.1.zip</p>
+<ol>
+<li>
+<p>Open a terminal window.</p>
+</li>
+<li>
+<p>Create a directory to store the Liberty package. </p>
+<div class="highlight"><pre><span></span><code>mkdir ~/Student/ops/software
+</code></pre></div>
+<p><kbd><img alt="image113" src="./images/media/image113.png"></kbd></p>
+</li>
+<li>
+<p>Download and store the Liberty kernel image. </p>
+<div class="highlight"><pre><span></span><code>wget https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/downloads/wlp/24.0.0.1/wlp-kernel-24.0.0.1.zip -P ~/Student/ops/software
+</code></pre></div>
+<p><kbd><img alt="image114" src="./images/media/image114.png"></kbd></p>
+</li>
+<li>
+<p>Use <strong>ls</strong> command to see that the kernel image is less than 17 MB in size. The overall disk footprint will be larger depending on the required Liberty features.</p>
+<div class="highlight"><pre><span></span><code>ls -lrt ~/Student/ops/software/
+</code></pre></div>
+<p><kbd><img alt="image115" src="./images/media/image115.png"></kbd></p>
+</li>
+<li>
+<p>Create a directory for the integration environment. This will be used for the Liberty installation.</p>
+<div class="highlight"><pre><span></span><code>mkdir ~/Student/ops/int
+cd ~/Student/ops/int
+</code></pre></div>
+<p><kbd><img alt="image116" src="./images/media/image116.png"></kbd></p>
+</li>
+<li>
+<p>Use the unzip command to extract the image.</p>
+<div class="highlight"><pre><span></span><code>unzip ../software/wlp-kernel-24.0.0.1.zip
+</code></pre></div>
+<p><kbd><img alt="image117" src="./images/media/image117.png"></kbd></p>
+</li>
+</ol>
+<table>
+<tbody>
+<tr class="odd">
+<td><kbd><img src="./images/media/info.png" alt="sign-info"></kbd></td>
+<td>
+<p>On the IBM support page, you can find next to the convenience packages like the Liberty kernel package also Liberty archives for Liberty Core, Liberty Base or Liberty ND. To install such an archive, you would use a command like:
+    <strong>"java -jar ../wlp-base-all-24.0.0.1.jar --acceptLicense ."</strong> 
+</p></td>
+</tr>
+</tbody>
+</table>
+
+<ol start="7">
+<li>
+<p>Get the Liberty version by running the following command:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/productInfo version
+</code></pre></div>
+<p><kbd><img alt="image118" src="./images/media/image118.png"></kbd></p>
+<p>As you can see, this is an ILAN package which can be used for evaluation as well as for production. </p>
+</li>
+<li>
+<p>Get the list of Liberty features that are part of the installation:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/productInfo featureInfo
+</code></pre></div>
+<p><kbd><img alt="image119" src="./images/media/image119.png"></kbd></p>
+<p>As you can see, no feature is included in the kernel image.</p>
+<p>Now that Liberty has been installed, the next step is to create a Liberty server instance.</p>
+</li>
+</ol>
+<table>
+<tbody>
+<tr class="odd">
+<td><kbd><img src="./images/media/info.png" alt="sign-info"></kbd></td>
+<td>
+<p>As you have seen, the installation of Liberty is basically an unzip. <br>If you  want to update Liberty later on, you can either apply a jar file or simply replace the binaries.</p></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="652-introducing-liberty-environment-variable-configuration">6.5.2   Introducing Liberty Environment Variable Configuration</h3>
+<p>You can customize the Liberty environment using certain specific variables to support the placement of product binaries and shared resources. The Liberty environment variables are specified using server.env file. You can use server.env file at the installation and server levels to specify environment variables such as <strong>JAVA_HOME</strong>, <strong>WLP_USER_DIR</strong> and <strong>WLP_OUTPUT_DIR</strong>.
+Here some of the Liberty specific variables can be used to customize the Liberty environment:
+(see also https://www.ibm.com/docs/en/was-liberty/nd?topic=liberty-customizing-environment) </p>
+<ul>
+<li><strong>${wlp.install.dir}</strong> - This configuration variable has an inferred location. The installation directory is always set to the parent of the directory containing the launch script or the parent of the /lib directory containing the target jar files.</li>
+<li><strong>JVM_ARGS</strong> - This environment variable can be used to specify a list of command-line options, such as system properties or -X parameters, that are passed to the JVM when the server starts. Any values that contain spaces must be enclosed in quotes.</li>
+<li><strong>WLP_USER_DIR</strong> - This environment variable can be used to specify an alternative location for <strong>wlp.user.dir</strong>. This variable must be an absolute path. If this variable is specified, the runtime environment looks for shared resources and server definitions in the specified directory. <strong>WLP_USER_DIR</strong> can be specified only in the <strong>${wlp.install.dir}/etc/server.env</strong> file because the purpose of this variable is to specify where the remaining configuration is located. After the remaining configuration is found and merged, no further configuration in a different location is expected, or supported</li>
+<li><strong>WLP_OUTPUT_DIR</strong> - This environment variable can be used to specify an alternative location for server generated output such as logs, the workarea directory, and generated files. Files in the logs directory can include console.log, messages.log, and any generated FFDC files. Generated files can include server dumps that are created with the server dump or server javadump command. This variable must be an absolute path.</li>
+</ul>
+<h3 id="653-create-a-liberty-server-instance">6.5.3 Create a Liberty server instance</h3>
+<p>The <strong>Liberty server</strong> command supports actions for starting, stopping, creating, packaging, and dumping a Liberty server. The <strong>server create</strong> command creates a new Liberty server with the name specified. Additional detail on the server command can be found here:
+https://www.ibm.com/docs/en/was-liberty/base?topic=line-server-command-options </p>
+<p>The <strong>server create</strong> command creates by default the user directory in a sub-directory of the <strong>\${wlp.install.dir}</strong> directory. In production, it is recommended to store the Liberty configuration in a separate directory. This can be done by setting the <strong>WLP_USER_DIR</strong> environment variable.</p>
+<ol>
+<li>
+<p>The etc directory as well as the server.env file are not created as part of the installation. <br>
+    Use the following commands to set the variable <strong>WLP_USER_DIR</strong> to <strong>/home/techzone/Student/ops/int/wlp_usr</strong> in the server.env on runtime level. <br>
+    (Keep in mind that the path in server.env must be absolute, ~/Student for example is not supported):</p>
+<div class="highlight"><pre><span></span><code>mkdir ~/Student/ops/int/wlp/etc
+echo "WLP_USER_DIR=/home/techzone/Student/ops/int/wlp_usr" &gt; ~/Student/ops/int/wlp/etc/server.env
+cat ~/Student/ops/int/wlp/etc/server.env
+</code></pre></div>
+<p><kbd><img alt="image120" src="./images/media/image120.png"></kbd></p>
+</li>
+<li>
+<p>Run the following commands to create a new server named <strong>"myServer"</strong>:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server create myServer
+</code></pre></div>
+<p><kbd><img alt="image121" src="./images/media/image121.png"></kbd></p>
+<p>The new server is created in the following directory: <strong>wlp_usr/servers/myServer</strong>.</p>
+</li>
+<li>
+<p>Run the following command to verify the name and the path of the server instance:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server list
+</code></pre></div>
+<p><kbd><img alt="image122" src="./images/media/image122.png"></kbd></p>
+</li>
+<li>
+<p>Run the following command to list the files and directories that have been created for myServer:</p>
+<div class="highlight"><pre><span></span><code>ls -lrt wlp_usr/servers/myServer
+</code></pre></div>
+<p><kbd><img alt="image123" src="./images/media/image123.png"></kbd></p>
+</li>
+<li>
+<p>Replace the generated Liberty configuration with the configuration that you stored in the assets directory.</p>
+<div class="highlight"><pre><span></span><code>cp ~/Student/assets/server.* wlp_usr/servers/myServer
+ls -lrt wlp_usr/servers/myServer
+</code></pre></div>
+<p><kbd><img alt="image124" src="./images/media/image124.png"></kbd></p>
+</li>
+</ol>
+<table>
+    <tbody>
+    <tr class="odd">
+    <td><kbd><img src="./images/media/info.png" alt="sign-info"></kbd></td>
+    <td>
+    <p>In the Liberty setup, you now have a <strong>server.env</strong> file on two levels: <br>
+        - on <strong>runtime level</strong> at <strong>${wlp.install.dir}/etc/server.env</strong> and <br>
+        - on <strong>server level</strong> at <strong>${server.config.dir}/server.env</strong>. <br>
+        If both files are present, the contents of the two files are merged; values in the server-level file take precedence over values in the runtime-level file.
+    </p></td>
+    </tr>
+    </tbody>
+</table>
+
+<ol start="6">
+<li>
+<p>Verify that the pre-defined HTTP settings fit to your environment:</p>
+<div class="highlight"><pre><span></span><code>cat wlp_usr/servers/myServer/server.xml | grep http
+</code></pre></div>
+<p><kbd><img alt="image125" src="./images/media/image125.png"></kbd></p>
+</li>
+</ol>
+<table>
+    <tbody>
+    <tr class="odd">
+    <td><kbd><img src="./images/media/info.png" alt="sign-info"></kbd></td>
+    <td>
+    <p>If you want to change those port values, you could define them in the <strong>server.env</strong> file or <strong>bootstrap.properties</strong> file for example. <br> Alternatively you could define the related variable on the operating system level. 
+    </p></td>
+    </tr>
+    </tbody>
+</table>
+
+<h3 id="654-install-required-features">6.5.4   Install required features</h3>
+<p>You installed the Liberty kernel package which does not contain any features. The next step is to install the required features. Instead of looking into the Liberty configuration to determine which features are required, you can let Liberty inspect which features are missing. This can be done using the featureUtility and specifying the server you are looking for. The command by default will download the required features from the online repository. In an air-gapped environment, you could download the feature repository from the IBM support page and then specify in the featureUtility command to use a local repository. </p>
+<ol>
+<li>
+<p>To download and install the required features, use the following command:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/featureUtility installServerFeatures myServer
+</code></pre></div>
+<p><kbd><img alt="image126" src="./images/media/image126.png"></kbd></p>
+<p>As you can see, the command detected that the features for <strong>servlet-6.0</strong> and <strong>transportSecurity-1.0</strong> were missing. It also downloads the feature <strong>ssl-1.0</strong> as <strong>transportSecurity-1.0</strong> depends on it.</p>
+</li>
+<li>
+<p>Verify that the Liberty features have been installed by using the following command:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/productInfo featureInfo
+</code></pre></div>
+<p><kbd><img alt="image127" src="./images/media/image127.png"></kbd></p>
+</li>
+</ol>
+<h3 id="655-use-your-own-keystore">6.5.5   Use your own keystore</h3>
+<p>If you do not create a keystore but enable SSL, Liberty will create a keystore with a random password. Now, you will create your own keystore with a password of choice. </p>
+<ol>
+<li>
+<p>Run the following command to create a keystore</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/securityUtility createSSLCertificate --server=myServer --password=mySecret
+</code></pre></div>
+<p><kbd><img alt="image128" src="./images/media/image128.png"></kbd></p>
+<p>As you can see, the command uses the hostname and server name as subjectDN and encodes the password using xor. The command also allows to use aes encoding or encryption, see https://www.ibm.com/docs/en/was-liberty/base?topic=applications-securityutility-command.</p>
+</li>
+<li>
+<p>Our server template has already configured SSL and uses a variable to specify the keystore password. Use the following commands to review what has been configured in the server.xml file:</p>
+<div class="highlight"><pre><span></span><code>cat wlp_usr/servers/myServer/server.xml | grep trans
+cat wlp_usr/servers/myServer/server.xml | grep keystore
+</code></pre></div>
+<p><kbd><img alt="image129" src="./images/media/image129.png"></kbd></p>
+</li>
+<li>
+<p>The keystore password has been configured in the server.env file. Use the following command for review the settings:</p>
+<div class="highlight"><pre><span></span><code>cat wlp_usr/servers/myServer/server.env;echo
+</code></pre></div>
+<p><kbd><img alt="image130" src="./images/media/image130.png"></kbd></p>
+<p>As expected, the password used for the keystore does not match to the one in <strong>server.env</strong> and must be updated. </p>
+</li>
+<li>
+<p>Best practice is to store the password encoded or encrypted. In this case, you will use encoding via aes and store the password in the server.env file. To generate the encoded password, you can use the securityUtility encode command. Use the following command to update the server.env file with the encoded keystore password of “mySecret”, then review the result:</p>
+<div class="highlight"><pre><span></span><code>echo "keystore_password=$(wlp/bin/securityUtility encode --encoding=aes mySecret)" &gt; wlp_usr/servers/myServer/server.env
+cat wlp_usr/servers/myServer/server.env
+</code></pre></div>
+<p><kbd><img alt="image131" src="./images/media/image131.png"></kbd></p>
+</li>
+</ol>
+<table>
+    <tbody>
+    <tr class="odd">
+    <td><kbd><img src="./images/media/info.png" alt="sign-info"></kbd></td>
+    <td>
+    <p>The encoded keystore password is not unique, so you might have a different password as in the screenshot above. <br> 
+        But as long as you use the same password to be encoded, all of the different resulting strings are valid. 
+    </p></td>
+    </tr>
+    </tbody>
+</table>
+
+<h3 id="656-verify-that-the-server-configuration-works">6.5.6   Verify that the server configuration works:</h3>
+<ol>
+<li>
+<p>Start the server via the following command:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server start myServer
+tail -f wlp_usr/servers/myServer/logs/messages.log
+</code></pre></div>
+<p><kbd><img alt="image132" src="./images/media/image132.png"></kbd></p>
+<p>As you can see, the Liberty server is running and listens on port <strong>9080</strong> and <strong>9443</strong>. You can also see that it complains about the <strong>missing include file application-config.xml</strong>. You will fix this later.</p>
+</li>
+<li>
+<p>Verify that the server is accessible via HTTPs. Switch to the browser and access the web application via the URL <strong>https://localhost:9443</strong>. 
+    As before, you will get a warning that your connection is not secure. Click on <strong>Advanced</strong>, scroll down and click on <strong>"Accept the Risk and Continue"</strong>. Then you should be able to access the application.</p>
+<p><kbd><img alt="image133" src="./images/media/image133.png"></kbd></p>
+</li>
+<li>
+<p>Switch back to the terminal window and press <strong>CTRL+C</strong> in the terminal window to stop the tail command.</p>
+</li>
+<li>
+<p>Stop the server via the following command:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server stop myServer
+</code></pre></div>
+</li>
+</ol>
+<h3 id="657-deploying-a-sample-application-to-liberty">6.5.7   Deploying a sample application to Liberty</h3>
+<p>In the first part of this lab, you used the Liberty Tools to develop an application and configure Liberty. The application got deployed via maven under the cover. Then you used the Liberty server package which already included the deployed application. In this section of the lab, you will deploy an application to Liberty using two different techniques.</p>
+<p>First, you will simply copy the application WAR module into the Liberty <strong>"dropins"</strong> directory. The dropins directory is monitored by Liberty. As deployable units (WAR, EAR, JAR) are added to the directory, Liberty automatically deploys and starts the application on the Liberty server. 
+The <strong>dropins</strong> directory can be used for applications that do not require extra configuration like security role mapping. As the deployable units are removed from the dropins folder, the applications are stopped and removed from the running Liberty server.</p>
+<ol>
+<li>
+<p>In the terminal window start the server and use the tail -f command to view the messages.log file.</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server start myServer
+tail -f wlp_usr/servers/myServer/logs/messages.log
+</code></pre></div>
+</li>
+<li>
+<p><strong>Right-click</strong> on <strong>Terminal</strong> and select <strong>New Window</strong> to open a second terminal window.</p>
+<p><kbd><img alt="image134" src="./images/media/image134.png"></kbd></p>
+</li>
+<li>
+<p>In the new Terminal window, navigate to the int directory:</p>
+<div class="highlight"><pre><span></span><code>cd ~/Student/ops/int/
+</code></pre></div>
+</li>
+<li>
+<p>Copy the web application into the dropins directory.</p>
+<div class="highlight"><pre><span></span><code>cp ~/Student/assets/simpleweb.war wlp_usr/servers/myServer/dropins
+</code></pre></div>
+<p><kbd><img alt="image135" src="./images/media/image135.png"></kbd></p>
+</li>
+<li>
+<p>Switch to the terminal window where tail command is running. You can see messages that the application deployment has taken place, the application simpleweb application has been started and is available at <strong>http://rhel9-base.gym..lan:9080/simpleweb/</strong>.</p>
+<p>Be aware that Liberty defined the context root based on the name of the WAR file as <strong>"/simpleweb"</strong>.</p>
+<p><kbd><img alt="image136" src="./images/media/image136.png"></kbd></p>
+</li>
+<li>
+<p>Verify that the application is accessible by opening a browser at: <strong>http://localhost:9080/simpleweb/helloWorld</strong></p>
+<p><kbd><img alt="image137" src="./images/media/image137.png"></kbd></p>
+</li>
+<li>
+<p>In the terminal window where tail is running, you can see that the application has been accessed.</p>
+<p><kbd><img alt="image138" src="./images/media/image138.png"></kbd></p>
+</li>
+<li>
+<p>Switch back to the terminal where you entered the copy command and remove the deployed application from the dropins directory using the following command:</p>
+<div class="highlight"><pre><span></span><code>rm wlp_usr/servers/myServer/dropins/simpleweb.war
+</code></pre></div>
+</li>
+<li>
+<p>Switch back to the terminal window where tail is running. You can see that the application has been removed.</p>
+<p><kbd><img alt="image139" src="./images/media/image139.png"></kbd></p>
+<p>While the dropins directory can be used for applications that do not require extra configuration, deploying the application by adding it to the Liberty server configuration provides the freedom to configure the Liberty server based on the application configuration requirements. 
+Now you will deploy the simpleweb application by adding it to the Liberty server configuration.</p>
+<p>The default place for applications is: <strong>${server.config.dir}/apps</strong>.</p>
+</li>
+<li>
+<p>Switch back to the terminal window not running tail. Copy the application WAR file into the apps directory by using the following command:</p>
+<div class="highlight"><pre><span></span><code>cp ~/Student/assets/simpleweb.war wlp_usr/servers/myServer/apps
+ls -lrt wlp_usr/servers/myServer/apps/*.war
+</code></pre></div>
+<p><kbd><img alt="image140" src="./images/media/image140.png"></kbd></p>
+</li>
+<li>
+<p>To define the application in the Liberty configuration file, take a look at the application configuration that has been provided as snippet.</p>
+<div class="highlight"><pre><span></span><code>cat ~/Student/assets/application-config.xml
+</code></pre></div>
+<p><kbd><img alt="image141" src="./images/media/image141.png"></kbd></p>
+<p>As you can see, a different context root has been defined.</p>
+</li>
+<li>
+<p>You will add the webApplication element to the Liberty configuration by using the <strong>include</strong> concept. Review that the include element and the properties that have already been defined in the server.xml file.</p>
+<div class="highlight"><pre><span></span><code>cat wlp_usr/servers/myServer/server.xml | grep include
+</code></pre></div>
+<p><kbd><img alt="image142" src="./images/media/image142.png"></kbd></p>
+</li>
+<li>
+<p>Copy the application-config.xml into the server directory.</p>
+<div class="highlight"><pre><span></span><code>cp ~/Student/assets/application-config.xml wlp_usr/servers/myServer
+ls -lrt wlp_usr/servers/myServer
+</code></pre></div>
+<p><kbd><img alt="image143" src="./images/media/image143.png"></kbd></p>
+</li>
+<li>
+<p>Switch back to the terminal window running tail. You can see that the application <strong>simpleweb</strong> gets deployed, this time with the context root <strong>mysimpleweb</strong>. </p>
+<p><kbd><img alt="image144" src="./images/media/image144.png"></kbd></p>
+</li>
+<li>
+<p>Finally test the application in the browser via URL <strong>http://localhost:9080/mysimpleweb/helloWorld</strong>. </p>
+<p><kbd><img alt="image145" src="./images/media/image145.png"></kbd></p>
+</li>
+</ol>
+<p><strong>You have successfully deployed the web application into Liberty, first via dropins directory, then by adding it to the server.xml file via include.</strong></p>
+<h3 id="658-change-logging-and-tracing-by-using-configdropins">6.5.8   Change logging and tracing by using ConfigDropins</h3>
+<p>Right now, you used the <strong>include</strong> concept to enhance the server.xml file with additional configuration files. Alternatively, you can specify additional configuration files in the <strong>configDropins</strong> directory without specifying include elements in the <strong>server.xml</strong> file. If you want to add configuration files to override anything in the <strong>erver.xml</strong> file of the server, create a <strong>configDropins/overrides</strong> directory. 
+In this case, you want to add/change the log level of the application server.</p>
+<ol>
+<li>
+<p>From the second terminal window, issue the following command to create a configDropins directory in the server directory.</p>
+<div class="highlight"><pre><span></span><code>mkdir -p wlp_usr/servers/myServer/configDropins/overrides
+</code></pre></div>
+<p><kbd><img alt="image146" src="./images/media/image146.png"></kbd></p>
+<p><strong>Add INFO logging output to console</strong></p>
+<p>Liberty provides the ability to set the logging level to any of the supported log levels defined in the documentation: https://www.ibm.com/docs/en/was-liberty/base?topic=liberty-logging-trace </p>
+<ul>
+<li>AUDIT logging enables logging of “Significant event affecting server state or resources”</li>
+<li>INFO logging enables of “General information outlining overall task progress”
+By default, the Liberty Server has the console log level set to AUDIT.
+In this section, you will change the level of log messages written to the console from AUDIT to INFO, which will result in additional logging messages.
+You will perform this activity not directly in the server.xml file but using the configDropins concept. Purpose is that you could change the log level easily on the fly and switch back to the previous level without having to manually edit a file. </li>
+</ul>
+</li>
+</ol>
+<table>
+    <tbody>
+    <tr class="odd">
+    <td><kbd><img src="./images/media/info.png" alt="sign-info"></kbd></td>
+    <td>
+    <p>Note: <br>
+        It is also possible to set default logging options in the bootstrap.properties file. <br>
+        If the logging options are set in the bootstrap.properties file, the logging options will take effect very early in server startup, <br>
+        so it may be useful for debugging server initialization problems.
+    </p></td>
+    </tr>
+    </tbody>
+</table>
+
+<ol start="2">
+<li>
+<p>Switch to the terminal currently running the tail on the file messages.log and press CTRL+C to stop it.</p>
+</li>
+<li>
+<p>Review the current console logging and you can see that it only contains messages from type AUDIT.</p>
+<div class="highlight"><pre><span></span><code>tail -f wlp_usr/servers/myServer/logs/console.log
+</code></pre></div>
+<p><kbd><img alt="image147" src="./images/media/image147.png"></kbd></p>
+</li>
+<li>
+<p>Switch to the second terminal window. Create a server configuration file to change the console log level to INFO via the following command:</p>
+<div class="highlight"><pre><span></span><code>echo '
+&lt;server&gt;
+    &lt;logging consoleLogLevel="INFO"&gt; &lt;/logging&gt;
+&lt;/server&gt;
+' &gt; wlp_usr/servers/myServer/configDropins/overrides/loglevel-config.xml
+</code></pre></div>
+<p><kbd><img alt="image148" src="./images/media/image148.png"></kbd></p>
+</li>
+<li>
+<p>Switch to the terminal window running tail to verify, that the new file has been detected.</p>
+<p><kbd><img alt="image149" src="./images/media/image149.png"></kbd></p>
+<p>You will verify that messages of log level <strong>INFO</strong> will now be logged during the configuration of tracing.</p>
+<p><strong>Update trace specification</strong></p>
+<p>By default, the Liberty Server trace specification is set to <strong>"*=info=enabled"</strong>. </p>
+<p>To update the trace specification, you will again use the configDropings concept.</p>
+</li>
+<li>
+<p>Switch to the second terminal window. Update the file <strong>configDropins/overrides/loglevel-config.xml</strong> to include a trace specification via the following command:</p>
+<div class="highlight"><pre><span></span><code>echo '
+&lt;server&gt;
+    &lt;logging consoleLogLevel="INFO" traceSpecification="webcontainer=all=enabled"&gt;
+    &lt;/logging&gt;
+&lt;/server&gt;
+' &gt; wlp_usr/servers/myServer/configDropins/overrides/loglevel-config.xml
+</code></pre></div>
+<p><kbd><img alt="image150" src="./images/media/image150.png"></kbd></p>
+</li>
+<li>
+<p>Switch to the terminal window running tail to verify, that the new file has been detected.</p>
+<p><kbd><img alt="image151" src="./images/media/image151.png"></kbd></p>
+<p>As you can see, messages of log level <strong>INFO</strong> are displayed now which means that the change of the consoleLogLevel has been picked up. <br>
+The message indicates as expected, that the trace level has been set to “webcontainer=all”. </p>
+</li>
+<li>
+<p>Switch to the second terminal window to verify that the trace has been created.</p>
+<div class="highlight"><pre><span></span><code>ls -lrt wlp_usr/servers/myServer/logs
+</code></pre></div>
+<p><kbd><img alt="image152" src="./images/media/image152.png"></kbd></p>
+</li>
+<li>
+<p>Remove the file to set the trace level back to default. </p>
+<div class="highlight"><pre><span></span><code>rm wlp_usr/servers/myServer/configDropins/overrides/loglevel-config.xml
+</code></pre></div>
+</li>
+<li>
+<p>Switch to the terminal window running tail to verify, that the new file has been detected.</p>
+<p><kbd><img alt="image153" src="./images/media/image153.png"></kbd></p>
+<p>As you can see, the trace specification has been changed back to <strong>"*=info"</strong>.</p>
+</li>
+<li>
+<p>Press CTRL+C in the terminal window to stop the tail command.</p>
+</li>
+<li>
+<p>Stop the Liberty instance using the following command: </p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server stop myServer
+</code></pre></div>
+</li>
+<li>
+<p>Delete the generated trace files by using  the following command:</p>
+<div class="highlight"><pre><span></span><code>rm wlp_usr/servers/myServer/logs/trace*.log
+</code></pre></div>
+<p>As you have seen, the logging component can be controlled through the server configuration and it is quite convenient to enable and disable tracing using configDropins.</p>
+<p><strong>Configure logging in the bootstrap.properties file</strong></p>
+<p>Occasionally, you might need to configure trace to diagnose a problem that occurs before the server.xml file is processed. Or you want to change the log format to something other than basic. In this case, the equivalent configuration properties can be specified in the <strong>bootstrap.properties</strong> file. </p>
+<p>If a configuration property is specified in both the bootstrap.properties file and the server.xml file, the value in bootstrap.properties is used until the server.xml file is processed. Then, the value in the server.xml file is used. Avoid specifying different values for the same configuration property in both the bootstrap.properties and the server.xml file.</p>
+<p>You will now change the log format to json. As the bootstrap.properties file does not exist, you will simpoly create it.</p>
+</li>
+<li>
+<p>Create a bootstrap,properties file that defines the property <strong>com.ibm.ws.logging.console.format</strong> by executing the following command: </p>
+<div class="highlight"><pre><span></span><code>echo 'com.ibm.ws.logging.console.format=json' &gt; wlp_usr/servers/myServer/bootstrap.properties
+cat wlp_usr/servers/myServer/bootstrap.properties
+</code></pre></div>
+<p><kbd><img alt="image154" src="./images/media/image154.png"></kbd></p>
+</li>
+<li>
+<p>Start the server via <strong>server run</strong> and you can see that the log format has been set to JSON.</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server run myServer
+</code></pre></div>
+<p><kbd><img alt="image155" src="./images/media/image155.png"></kbd></p>
+</li>
+<li>
+<p>In the terminal window, press <strong>CTRL+C</strong> to stop the server.</p>
+</li>
+<li>
+<p>Change the log format back to default by deleting bootstrap.properties, then run the server again.</p>
+<div class="highlight"><pre><span></span><code>rm wlp_usr/servers/myServer/bootstrap.properties
+wlp/bin/server run myServer
+</code></pre></div>
+<p><kbd><img alt="image156" src="./images/media/image156.png"></kbd></p>
+</li>
+<li>
+<p>In the terminal, press <strong>CTRL+C</strong> to stop the server.</p>
+<p>If you are interested into additional logging attributes, please take a look at: https://www.ibm.com/docs/en/was-liberty/base?topic=liberty-logging-trace
+ </p>
+</li>
+</ol>
+<h3 id="659-review-the-liberty-configuration-via-liberty-rest-apis">6.5.9   Review the Liberty configuration via Liberty REST APIs</h3>
+<p>If you use several includes or config dropins, you might run into the situation where you want to review the final setup. This can be done by using the <strong>restConnector</strong> APIs. </p>
+<p><strong>Configure the admin access to the Liberty instance</strong>. </p>
+<ol>
+<li>
+<p>First of all, you need a strong password as the APIs provide access to sensitive data which could help a hacker to manipulate the system. Use the <strong>securityUtility</strong> to create a secure password as <strong>LibertyIsGreat</strong>.</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/securityUtility encode --encoding=aes LibertyIsGreat
+</code></pre></div>
+<p><kbd><img alt="image157" src="./images/media/image157.png"></kbd></p>
+<p>As before, the encoded password is not unique, so your output will likely look different that the one above. But both are valid.</p>
+</li>
+<li>
+<p>Use the following commands to setup and configure the restConnector.</p>
+<p>a. Update the user password in the following code snippet or keep the password as is.</p>
+<div class="highlight"><pre><span></span><code>echo '
+&lt;server&gt;
+    &lt;featureManager&gt;
+        &lt;feature&gt;restConnector-2.0&lt;/feature&gt;
+    &lt;/featureManager&gt;
+&lt;quickStartSecurity userName="admin" userPassword="{aes}ALCpb79MrIuO8aVUdyXKVDWNssXfX3OmL+xD2J3jWcOgLwrIq1f7/qO8tCR7JwNmcQ==" /&gt;
+&lt;/server&gt;
+' &gt; wlp_usr/servers/myServer/configDropins/overrides/rest-config.xml
+</code></pre></div>
+<p><kbd><img alt="image158" src="./images/media/image158.png"></kbd></p>
+<p>b. As the restConnector feature is not installed so far, switch to a terminal window to install the missing features via command:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/featureUtility installServerFeatures myServer
+</code></pre></div>
+<p><kbd><img alt="image159" src="./images/media/image159.png"></kbd></p>
+</li>
+<li>
+<p>Start the Liberty instance by using the command:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server start myServer
+</code></pre></div>
+</li>
+<li>
+<p>From a browser window, access the Liberty REST APIs via the URL <strong>https://localhost:9443/ibm/api/config</strong>. <br>
+    Enter Username/Password as: <strong>admin</strong>/<strong>LibertyIsGreat</strong>.</p>
+<p><kbd><img alt="image160" src="./images/media/image160.png"></kbd></p>
+</li>
+<li>
+<p>If asked, don’t save the password in the browser. Your browser should display something like this:</p>
+<p><kbd><img alt="image161" src="./images/media/image161.png"></kbd></p>
+</li>
+<li>
+<p>In the browser window, press <strong>CTRL+F</strong> and enter <strong>webapp</strong> to search for webapp. You should find the related settings.</p>
+<p><kbd><img alt="image162" src="./images/media/image162.png"></kbd></p>
+</li>
+<li>
+<p>Search for <strong>logging</strong> and you get all attributes currently used for logging.</p>
+<p><kbd><img alt="image163" src="./images/media/image163.png"></kbd></p>
+</li>
+<li>
+<p>Finally stop the server and remove the restConnector configuration.</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server stop myServer
+rm wlp_usr/servers/myServer/configDropins/overrides/rest-config.xml
+</code></pre></div>
+<p>For more details about the restConnector for administration, please take a look at: <strong>https://www.ibm.com/docs/en/was-liberty/base?topic=features-admin-rest-connector-20</strong></p>
+</li>
+</ol>
+<h3 id="6510-using-the-liberty-admincenter">6.5.10 Using the Liberty AdminCenter</h3>
+<p>The Liberty <strong>AdminCenter</strong> can be used to monitor the status of the Liberty server. You will define two users, an administrative user with the role <strong>admin</strong> and the second user with the role <strong>reader</strong>. Use again the securityUtility to create two secure passwords.</p>
+<ol>
+<li>
+<p>Create a password as <strong>Liberty4Admins</strong> for the admin user.</p>
+<div class="highlight"><pre><span></span><code>    wlp/bin/securityUtility encode --encoding=xor Liberty4Admins
+</code></pre></div>
+<p><kbd><img alt="image164" src="./images/media/image164.png"></kbd></p>
+</li>
+<li>
+<p>Create a password as <strong>Liberty4Readers</strong> for the second user.</p>
+<div class="highlight"><pre><span></span><code>    wlp/bin/securityUtility encode --encoding=xor Liberty4Readers
+</code></pre></div>
+<p><kbd><img alt="image165" src="./images/media/image165.png"></kbd></p>
+</li>
+<li>
+<p>Execute the following command to Configure the AdminCenter with the two users using the generated passwords generated before.</p>
+<div class="highlight"><pre><span></span><code>echo '
+&lt;server&gt;
+    &lt;featureManager&gt;
+        &lt;feature&gt;adminCenter-1.0&lt;/feature&gt;
+        &lt;feature&gt;websocket-2.1&lt;/feature&gt;
+    &lt;/featureManager&gt;
+    &lt;!-- Configure administrative roles. --&gt;
+    &lt;basicRegistry realm="basicRealm"&gt;
+        &lt;user name="admin" password="{xor}EzY9Oi0rJmseOzI2MSw=" /&gt;
+        &lt;user name="reader" password="{xor}EzY9Oi0rJmsNOj47Oi0s" /&gt;
+    &lt;/basicRegistry&gt; 
+    &lt;!-- Assign 'admin' to Administrator --&gt;
+    &lt;administrator-role&gt;
+        &lt;user&gt;admin&lt;/user&gt;
+    &lt;/administrator-role&gt;
+    &lt;reader-role&gt;
+        &lt;user&gt;reader&lt;/user&gt;
+    &lt;/reader-role&gt;
+&lt;/server&gt;
+' &gt; wlp_usr/servers/myServer/configDropins/overrides/adminCenter-config.xml
+</code></pre></div>
+<p><kbd><img alt="image166" src="./images/media/image166.png"></kbd></p>
+</li>
+<li>
+<p>As the AdminCenter feature is not installed so far, switch to a terminal window to install the feature via command:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/featureUtility installServerFeatures myServer
+</code></pre></div>
+<p><kbd><img alt="image167" src="./images/media/image167.png"></kbd></p>
+</li>
+<li>
+<p>Start the server and take a look at the log:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server start myServer
+tail -f wlp_usr/servers/myServer/logs/messages.log
+</code></pre></div>
+<p><kbd><img alt="image168" src="./images/media/image168.png"></kbd></p>
+<p>As you can see, the AdminCenter feature <strong>adminCenter-1.0</strong> has been enabled. </p>
+</li>
+<li>
+<p>Access the Liberty Admin Center via URL <strong>https://localhost:9443/adminCenter</strong>, then enter the credentials for the admin user (<strong>admin</strong>/<strong>Liberty4Admins</strong>) and press <strong>Submit</strong>.</p>
+<p><kbd><img alt="image169" src="./images/media/image169.png"></kbd>
+The Admin Center Toolbox is displayed.</p>
+</li>
+<li>
+<p>Click on <strong>Explore</strong> to explore the Liberty status, the applications as well monitoring data and configuration.</p>
+<p><kbd><img alt="image170" src="./images/media/image170.png"></kbd></p>
+</li>
+<li>
+<p>On the tab <strong>Overview</strong> take a look at the running servers and applications. </p>
+<p><kbd><img alt="image171" src="./images/media/image171.png"></kbd></p>
+<p>You would see more than one server if a collection would have been defined.</p>
+</li>
+<li>
+<p>On the tab <strong>Applications</strong> you can see the running applications. As user with admin rights, you can use the menu to start, stop or restart an application.</p>
+<p><kbd><img alt="image172" src="./images/media/image172.png"></kbd></p>
+</li>
+<li>
+<p>On the tab <strong>Montor</strong>, you can see basic performance data. </p>
+<p><kbd><img alt="image173" src="./images/media/image173.png"></kbd></p>
+<p>As you can see here, the Used Heap Memory max value above 1.9 MB which indicates that max heap has not been defined. You will change that in the next section of the lab.</p>
+</li>
+<li>
+<p>On the tab <strong>Configure</strong>, you can see current configuration. </p>
+<p><kbd><img alt="image174" src="./images/media/image174.png"></kbd></p>
+<p>You can see a warning that remote file access is not configured. You can ignore that as you will not configure Liberty via AdminCenter. <br>
+But you could click on the link to see the configuration in design and source view.</p>
+</li>
+<li>
+<p>Select to log out as admin.</p>
+<p><kbd><img alt="image175" src="./images/media/image175.png"></kbd></p>
+</li>
+<li>
+<p>Log in as user <strong>reader</strong> with password <strong>Liberty4Readers</strong>.</p>
+<p><kbd><img alt="image176" src="./images/media/image176.png"></kbd></p>
+</li>
+<li>
+<p>Click on <strong>Explore</strong>, then select the tab <strong>Applications</strong>. Try to click on the twisty next to the <strong>simpleweb</strong> application and you can see that you are not auithorized to start or stop an application.</p>
+<p><kbd><img alt="image177" src="./images/media/image177.png"></kbd></p>
+</li>
+<li>
+<p>Select to log out as reader.</p>
+<p><kbd><img alt="image178" src="./images/media/image178.png"></kbd></p>
+</li>
+<li>
+<p>In the terminal window, press <strong>CRTL+C</strong> to stop the tail command. </p>
+</li>
+<li>
+<p>Stop the Liberty server.</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server stop myServer
+</code></pre></div>
+</li>
+</ol>
+<h3 id="6511-customizing-liberty-jvm-options">6.5.11 Customizing Liberty JVM Options</h3>
+<p>As you have seen in the Admin Center, the Liberty value for max heap is quite large which indicates that a limit has not been defined yet. This will be done as part of this section by defining Liberty JVM options. </p>
+<p>The generic JVM arguments are used to configure and adjust how the JVM executes. Liberty is pre-configured with minimal settings defined. Custom generic JVM arguments such as heap settings for a Liberty server can be defined in the <strong>jvm.options</strong> file.</p>
+<ol>
+<li>
+<p>Create a <strong>jvm.options</strong> file with definitions for min and max heap by executing the following command:</p>
+<div class="highlight"><pre><span></span><code>echo '
+-Xms25m
+-Xmx500m
+' &gt; wlp_usr/servers/myServer/jvm.options
+cat wlp_usr/servers/myServer/jvm.options
+</code></pre></div>
+<p><kbd><img alt="image179" src="./images/media/image179.png"></kbd></p>
+</li>
+<li>
+<p>Start the server with the updated JVM options.</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server start myServer
+</code></pre></div>
+</li>
+<li>
+<p>Access the Liberty Admin Center again via URL <strong>https://localhost:9443/adminCenter</strong>. Log in as user reader with password Liberty4Readers.</p>
+<p><kbd><img alt="image176" src="./images/media/image176.png"></kbd></p>
+</li>
+<li>
+<p>Click on <strong>Explore</strong>, then select <strong>Monitor</strong>. Take a look at the dashboard and you can see that the Used Heap Memory Max is now 500 MB as defined in jvm.options.</p>
+<p><kbd><img alt="image180" src="./images/media/image180.png"></kbd>  </p>
+</li>
+<li>
+<p>Log out from admin center.</p>
+</li>
+<li>
+<p>Stop the Liberty server using the following command:</p>
+<div class="highlight"><pre><span></span><code>wlp/bin/server stop myServer
+</code></pre></div>
+<p>For additional information around the Liberty Admin Center, take a look at:
+<strong>https://www.ibm.com/docs/en/was-liberty/base?topic=center-setting-up-admin</strong></p>
+</li>
+</ol>
+<h3 id="6512-recap">6.5.12 Recap</h3>
+<p>Let’s recap what you did in this part of the lab: </p>
+<ul>
+<li>installed a Liberty server using the Liberty kernel image.</li>
+<li>used Liberty environment variables to separate the Liberty configuration from the binaries.</li>
+<li>created a Liberty server instance and installed missing features.</li>
+<li>deployed a simple web application via dropins and via server.xml.</li>
+<li>configured logging via server.xml and server.env.</li>
+<li>changed the Liberty heap size via jvm.options.</li>
+<li>used the REST API to see the Liberty configuration.</li>
+<li>used Liberty Admin Center to see monitoring data and administer Liberty apps.
+ </li>
+</ul>
+<h3 id="7-lab-cleanup">7 Lab Cleanup</h3>
+<ol>
+<li>
+<p>Once you are done, make sure that Liberty and Visual Studio Code is not running.</p>
+</li>
+<li>
+<p>Delete the Student folder via command:</p>
+<div class="highlight"><pre><span></span><code>rm -rf ~/Student
+</code></pre></div>
+</li>
+<li>
+<p>Close the browser and all terminal windows</p>
+</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<p>In this lab, you learned how to develop a simple application as a developer, how to deployment and configure the application as an configuration opertor, and how to install and configure Liberty as an administrator.</p>
+<p><strong>Congratulations!</strong></p>
+<p><strong>You have successfully completed the lab "Liberty Getting Started"</strong></p></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 IBM
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.annotate", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>
