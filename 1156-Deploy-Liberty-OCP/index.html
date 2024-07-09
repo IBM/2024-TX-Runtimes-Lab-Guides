@@ -350,7 +350,7 @@
 <div><h1 id="macro-syntax-error"><em>Macro Syntax Error</em></h1>
 <p><em>File</em>: <code>1156-Deploy-Liberty-OCP/README.md</code></p>
 <p><em>Line 1070 in Markdown file:</em> <strong>unexpected '.'</strong>
-</p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>        oc delete -n apps-pbw pod $(oc get pod -o template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>oc delete -n apps-pbw pod $(oc get pod -o template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
 </code></pre></div></div>
 
 
