@@ -1,0 +1,2300 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Guidances for doing TechXchange Runtimes labs">
+      
+      
+        <meta name="author" content="Yi Tang (yitang@us.ibm.com)">
+      
+      
+      
+        <link rel="prev" href="../1156-Deploy-Liberty-OCP/">
+      
+      
+        <link rel="next" href="../1597-WebSphere_Automation/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>1157 - Recommended practices for WebSphere Liberty deployments and zero-migration upgrades on VMs - 2024 TechXchange Runtimes Lab Guides</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-1157" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="2024 TechXchange Runtimes Lab Guides" class="md-header__button md-logo" aria-label="2024 TechXchange Runtimes Lab Guides" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            2024 TechXchange Runtimes Lab Guides
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1157 - Recommended practices for WebSphere Liberty deployments and zero-migration upgrades on VMs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="2024 TechXchange Runtimes Lab Guides" class="md-nav__button md-logo" aria-label="2024 TechXchange Runtimes Lab Guides" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    2024 TechXchange Runtimes Lab Guides
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1024-Liberty-Getting-Started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1024 - Liberty Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1156-Deploy-Liberty-OCP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1156 - Rapidly deploy and configure your Java applications with WebSphere Liberty and OpenShift Container Platform
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    1157 - Recommended practices for WebSphere Liberty deployments and zero-migration upgrades on VMs
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    1157 - Recommended practices for WebSphere Liberty deployments and zero-migration upgrades on VMs
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-practices-for-websphere-liberty-deployments-and-zero-migration-upgrades-on-vms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended practices for WebSphere Liberty deployments and zero-migration upgrades on VMs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-lab-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      The lab environment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-the-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing the environment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-liberty-deployment-common-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Review Liberty deployment common practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-clone-the-github-repo-for-this-workshop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 1: Clone the GitHub repo for this workshop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-produce-liberty-server-packages-as-build-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 2: Produce Liberty “server packages” as build output
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-create-a-liberty-collective-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 3: Create a Liberty Collective Controller
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-4-create-liberty-collective-members" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 4: Create Liberty Collective Members
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-5-verify-the-application-deployment-in-the-collective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 5: Verify the application deployment in the collective
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 5: Verify the application deployment in the collective">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-test-the-two-example-applications-used-in-the-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 - Test the two example applications used in the lab
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-6-configure-dynamic-routing-application-high-availabilty" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 6: Configure Dynamic Routing application High Availabilty
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 6: Configure Dynamic Routing application High Availabilty">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-setup-dynamic-routing-in-websphere-liberty" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 - Setup Dynamic Routing in WebSphere Liberty
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-examine-the-generated-plugin-cfgxml-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 - Examine the generated “plugin-cfg.xml” file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-examine-the-web-servers-httpdconf-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 - Examine the Web Server’s “httpd.conf” file
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-7-testing-the-dynamic-routing-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 7: Testing the Dynamic Routing Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-8-produce-a-new-server-package-using-liberty-220012" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 8: Produce a new “server package” using Liberty 22.0.0.12
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-9-deploy-the-new-server-package-to-the-collective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 9: Deploy the new server package to the Collective
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 9: Deploy the new server package to the Collective">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-deploy-collective-member-to-the-local-host-vm-server0gymlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1 - Deploy collective member to the local host VM, server0.gym.lan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-deploy-a-collective-member-to-the-remote-host-vm-server1gymlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2 - Deploy a collective member to the remote host VM, server1.gym.lan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-ripple-start-the-new-220012-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.3 - Ripple Start the new 22.0.0.12 servers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-10-test-the-applications-after-the-liberty-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 10: Test the applications after the Liberty upgrade
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 10: Test the applications after the Liberty upgrade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-test-the-plantsbywebsphere-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.1 - Test the PlantsByWebSphere application:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-test-the-whereami-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.2 - Test the WhereAmI application:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-test-dynamic-routing-after-the-liberty-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.3 - Test Dynamic Routing after the Liberty upgrade
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1597-WebSphere_Automation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1597 - WebSphere proactive CVE protection and memory leak remediation observed by Instana
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-practices-for-websphere-liberty-deployments-and-zero-migration-upgrades-on-vms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended practices for WebSphere Liberty deployments and zero-migration upgrades on VMs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-lab-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      The lab environment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-the-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing the environment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-liberty-deployment-common-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Review Liberty deployment common practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-clone-the-github-repo-for-this-workshop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 1: Clone the GitHub repo for this workshop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-produce-liberty-server-packages-as-build-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 2: Produce Liberty “server packages” as build output
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-create-a-liberty-collective-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 3: Create a Liberty Collective Controller
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-4-create-liberty-collective-members" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 4: Create Liberty Collective Members
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-5-verify-the-application-deployment-in-the-collective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 5: Verify the application deployment in the collective
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 5: Verify the application deployment in the collective">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-test-the-two-example-applications-used-in-the-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 - Test the two example applications used in the lab
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-6-configure-dynamic-routing-application-high-availabilty" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 6: Configure Dynamic Routing application High Availabilty
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 6: Configure Dynamic Routing application High Availabilty">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-setup-dynamic-routing-in-websphere-liberty" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 - Setup Dynamic Routing in WebSphere Liberty
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-examine-the-generated-plugin-cfgxml-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 - Examine the generated “plugin-cfg.xml” file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-examine-the-web-servers-httpdconf-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 - Examine the Web Server’s “httpd.conf” file
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-7-testing-the-dynamic-routing-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 7: Testing the Dynamic Routing Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-8-produce-a-new-server-package-using-liberty-220012" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 8: Produce a new “server package” using Liberty 22.0.0.12
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-9-deploy-the-new-server-package-to-the-collective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 9: Deploy the new server package to the Collective
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 9: Deploy the new server package to the Collective">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-deploy-collective-member-to-the-local-host-vm-server0gymlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1 - Deploy collective member to the local host VM, server0.gym.lan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-deploy-a-collective-member-to-the-remote-host-vm-server1gymlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2 - Deploy a collective member to the remote host VM, server1.gym.lan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-ripple-start-the-new-220012-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.3 - Ripple Start the new 22.0.0.12 servers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-10-test-the-applications-after-the-liberty-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 10: Test the applications after the Liberty upgrade
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 10: Test the applications after the Liberty upgrade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-test-the-plantsbywebsphere-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.1 - Test the PlantsByWebSphere application:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-test-the-whereami-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.2 - Test the WhereAmI application:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-test-dynamic-routing-after-the-liberty-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.3 - Test Dynamic Routing after the Liberty upgrade
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<div><h1 id="lab-1157">Lab 1157:</h1>
+<h2 id="recommended-practices-for-websphere-liberty-deployments-and-zero-migration-upgrades-on-vms">Recommended practices for WebSphere Liberty deployments and zero-migration upgrades on VMs</h2>
+<p>The goal of this lab is to provide hands-on experience using recommended
+practices for deploying Java applications to Liberty in collectives on
+VMs, using automation and flexible deployment methodologies.</p>
+<p>You will learn how Liberty dynamic routing feature enables routing of
+HTTP requests to all members of Liberty collectives without regenerating
+the WebSphere plug-in configuration file when servers, collective
+members, applications, or virtual hosts are added, removed, started,
+stopped, or modified.</p>
+<p>You will also learn that Liberty follows a single stream continuous
+delivery model. There is only one stream of Liberty, no version upgrades
+necessary. Simply install new version (or fixpacks if you prefer) to get
+the latest performance enhancements, features, and bug fixes. Then use
+your existing build process to produce a new Liberty Server package that
+contains the updated Liberty binaries, your existing application and
+configuration, and then deploy to a dual installation location. This
+removes one of the largest headaches for managing technical debt for
+your applications: keeping current on software updates.</p>
+<p>Following these methodologies, you will gain an understanding of how you
+might apply your own DevOps processes or automation to achieve
+significant agility and flexibility managing Liberty deployments with
+repeatable automated processes that significantly reduces risk to your
+business.</p>
+<p>After completing the lab, you should have an appreciation for how simple
+Liberty is to manage though automation, which equally applies to
+integration with your own DevOps tools.</p>
+<p><strong>This lab contains the following hands-on activities:</strong></p>
+<ul>
+<li>
+<p>Build Liberty server packages using Liberty's flexible deployment model</p>
+</li>
+<li>
+<p>Create a Liberty-ND Collective </p>
+</li>
+<li>
+<p>Deploy Liberty Server packages to the Liberty-ND collective</p>
+</li>
+<li>
+<p>Configure Liberty-ND Dynamic Routing in the Collective Controller</p>
+</li>
+<li>
+<p>Upgrade Liberty using Liberty's zero-migration architecture</p>
+</li>
+</ul>
+<h2 id="the-lab-environment">The lab environment</h2>
+<p>The lab environemnt consists of two Host VMs:</p>
+<ul>
+<li>
+<p>server0.gym.lan</p>
+</li>
+<li>
+<p>server1.gym.lan</p>
+</li>
+</ul>
+<p>You will use Linux shell scripts provided for the lab, to build Liberty
+server packages, construct a Liberty- ND Collective that spans two host
+VMs, and deploy the server package to both host VMs.</p>
+<p>The Liberty-ND Collective that you will create is illustrated below:</p>
+<p><img alt="" src="images/media/image1.png"></p>
+<p>The “<strong>server0.gym.lan</strong>” host VM, which is the primary VM, contains the
+following components:</p>
+<ul>
+<li>
+<p><strong>Liberty Builds and Server packages:</strong> Think of this as a “build
+    machine” where a build process builds the applications, runs tests,
+    and produces a server package that is ready to be deployed. A server
+    package contains the Liberty binaries, application, default server
+    configurations, which get deployed as a unit to host VMs.</p>
+</li>
+<li>
+<p><strong>Collective Controller:</strong> The collective controller is a Liberty
+    server that is configured with the “<strong>collectiveController-1.0</strong>”
+    feature, which enables the Server to act as the management server
+    for the collective.</p>
+<blockquote>
+<p><strong>Note:</strong> In most cases the Collective Controller would likely be placed on a dedicated host, but to minimize the size of this demonstration environment, it’s collocated with the host used for builds</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Collective Member:</strong> Collective members are Liberty Servers that
+    run your application and are joined to the collective with the
+    “<strong>collectiveMember-1.0</strong>” feature. Collective members can be
+    centrally managed and take advantage of features such as “dynamic
+    Routing” without requiring Liberty ND licenses for the collective
+    members.</p>
+<blockquote>
+<p><strong>Note:</strong> In most cases Liberty collective members are not located on the same host as collective controllers, but to minimize the size of this demonstration environment a collective member is collocated with a collective controller.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Http Server:</strong> The IBM HTTP server is used in some labs to
+    showcase Liberty capabilities such as Dynamic Routing, Session
+    Persistence, and fail-over scenarios.</p>
+<p><strong>Note:</strong> In most cases the HTTP server is placed on a dedicated host located in the DMZ, but to minimize the size of this demonstration environment, it’s collocated with Liberty processes.</p>
+</li>
+</ul>
+<p>The “<strong>server1.gym.lan</strong>” VM contains the following components:</p>
+<ul>
+<li><strong>Collective Member:</strong> Collective members are Liberty Servers that
+    run your application and are joined to the collective with the
+    “<strong>collectiveMember-1.0</strong>” feature.</li>
+</ul>
+<h2 id="accessing-the-environment">Accessing the environment</h2>
+<ol>
+<li>
+<p>Access the lab environment from your web browser.</p>
+<p>The lab environment page is displayed, the lab environment contains
+ three (3) Linux VMs, <strong>server0</strong>, <strong>server1</strong> and <strong>instanaserver</strong>. The VM <strong>server0</strong> is
+ the one with the Graphical User Interface (GUI) for you to access and work in this lab.</p>
+<p><img alt="Screens screenshot of a computer Description automatically
+ generated" src="images/media/image2.png"></p>
+</li>
+<li>
+<p>Click <strong>Red Hat</strong> icon to access it.</p>
+<p><img alt="" src="images/media/image3.png"></p>
+</li>
+<li>
+<p>Click <strong>techzone</strong> user to log in.</p>
+<p><img alt="" src="images/media/image003.png"></p>
+</li>
+<li>
+<p>Enter the password as: <strong>IBMDm0s!</strong> and press <strong>Enter</strong>.</p>
+<p><img alt="" src="images/media/image004.png"></p>
+<p><strong>Note:</strong> That is a numeric zero in <strong>IBMDem0s!</strong></p>
+<p>The lab VM GUI is displayed.</p>
+<p><img alt="" src="images/media/image5.png"> </p>
+</li>
+</ol>
+<p><strong>Tips for working in the lab environment:</strong></p>
+<ol>
+<li>
+<p>You can use the VM Desktop tools to fit to window or resize the
+    window.</p>
+<p><img alt="A screenshot of a computer Description automatically
+ generated" src="images/media/image6.png"></p>
+</li>
+<li>
+<p>You can copy text from the lab guide into the lab
+    environment using the VM Desktop Send Text tool.</p>
+<p><img alt="A computer screen shot of a keyboard Description automatically
+ generated" src="images/media/image7.png"></p>
+<p>a. Copy the text from the lab guide that you want to paste into the
+ lab environment.</p>
+<p>b. Open a terminal window, or a text editor or a web browser in the VM
+ Desktop where you want to copy the text to.</p>
+<p>c. Click the <strong>Send Text</strong> icon in the VM Desktop tool bar, paste the
+ text into its window, then again click <strong>Send Text</strong> to send the text
+ to an open command shell and close its window.</p>
+<p><img alt="A screenshot of a computer Description automatically
+ generated" src="images/media/image8.png"></p>
+<p>The text is now copied to the terminal window, or the text editor or
+ the web browser you opened in the previous step.</p>
+<p><img alt="A screenshot of a computer Description automatically
+ generated" src="images/media/image9.png"></p>
+</li>
+</ol>
+<h2 id="review-liberty-deployment-common-practices">Review Liberty deployment common practices</h2>
+<p>A Liberty server is lightweight due to its modular architecture, so you
+can easily package a server installation and applications in a
+compressed <strong>zip</strong> or <strong>jar</strong> package. You can then store this package and
+use it to deploy the installation to different nodes or machines in your
+Liberty Collective.</p>
+<p>In this lab, you will deploy Liberty and sample applications to a
+Liberty-ND Collective, while following several common practices as
+illustrated below.</p>
+<p><img alt="" src="images/media/image10.png"></p>
+<ul>
+<li>
+<p><strong>Recommended practice:</strong> Produce server packages as build
+    output</p>
+<p>It is recommended to create an immutable build using server packages
+ that include the Liberty binaries, server configuration, application,
+ and shared configuration as build output.</p>
+<p>The build output, “<strong>server package</strong>”, is the deployable unit to
+ Liberty collective members. Using this practice is very similar to
+ recommended practices for container image deployments in Kubernetes
+ platforms.</p>
+</li>
+<li>
+<p><strong>Recommended practice:</strong> Automate the build and deployment of
+    server packages to the collective</p>
+<p>Automating installation, deployment, and configuration is always
+ recommended to achieve greater agility, repeatability, and
+ productivity.</p>
+</li>
+<li>
+<p><strong>Recommended practice:</strong> Add configuration overrides to the
+    server after the server package is uncompressed.</p>
+<p>The automation scripts used in the lab follows this practice. The
+ server package is built as a template that contains the application,
+ libraries, and default configuration.</p>
+<p>Then, when the server package is deployed and uncompressed on the
+ target machine, the configuration overrides are added. These overrides
+ can override any default configuration from the server package.</p>
+</li>
+</ul>
+<table>
+<tbody>
+<tr class="odd">
+<td width="80"><img src="./images/media/image11.png" style="width:2.82431in;height:0.82431in" alt="sign-info"></td>
+<td><p><strong>Note:</strong> there are several alternatives to applying the overrides to the server after expanding the archive.</p>
+<p>Some clients choose to override using OS environment variables that override default Values in the server.xml, other clients apply the overrides in the Liberty configuration by building the archive using the overrides in either the configDropins directory or via an include(d) external xml file in the server.xml for a specific environment.</p></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="part-1-clone-the-github-repo-for-this-workshop">Part 1: Clone the GitHub repo for this workshop</h2>
+<p>This lab requires artifacts that are stored in a GitHub repository. Run
+the command below to clone the repository to the local VM used for the
+lab.</p>
+<ol>
+<li>
+<p>Open a new terminal window by clicking the termical icon on the desktop.</p>
+<p><img src="./images/media/image12.png" width="200"></p>
+</li>
+<li>
+<p>Copy the commands below to the terminal window to clone the GitHub
+    repository required for the lab.</p>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/IBMTechSales/liberty_admin_pot.git
+
+cd /home/techzone/liberty_admin_pot/lab-scripts
+
+chmod -R 755 ./
+</code></pre></div>
+<p><img alt="A screenshot of a computer Description automatically
+ generated" src="images/media/image13.png"></p>
+</li>
+</ol>
+<h2 id="part-2-produce-liberty-server-packages-as-build-output">Part 2: Produce Liberty “server packages” as build output</h2>
+<p>Following recommended practices for flexible deployment of Liberty
+applications, you will produce a server package as build output, which
+includes the Liberty runtime, server configuration, and the application,
+as a zip archive file.</p>
+<p>Producing the build output in the form of a Liberty server package zip
+file provides the flexibility of deploying and upgrading your version of
+Liberty and applications as an immutable package, like how container
+images are deployed to Kubernetes container platforms.</p>
+<p>In the lab, the <strong><code>mavenBuid.sh</code></strong> script provides the following
+capabilities for producing server packages for deployment to a Liberty
+collective.</p>
+<ul>
+<li>
+<p>Pull the application source code from the source code repository
+    (GitHub)</p>
+</li>
+<li>
+<p>Build the application and produce a Liberty Server package</p>
+</li>
+<li>
+<p>Store the Liberty server package in a “working directory” for the
+    lab.</p>
+</li>
+</ul>
+<table>
+<tbody>
+<tr class="odd">
+<td width="80"><img src="./images/media/image11.png" style="width:1.82431in;height:0.82431in" alt="sign-info"></td>
+<td><p><strong>mavenBuild.sh script is NOT an official IBM tool.</strong></p>
+<p>It is a simple script that we provide for this PoT to demonstrate ease of automation of common Liberty tasks. Other tools such as Gradle, Jeknins, UCD, etc can be employed based on enterprise preferences and practices</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>In this section of the lab, you will use the provided shell script that
+automates the tasks for producing a server package for deployment to the
+collective.</p>
+<p><strong>Use the Maven Build script to produce a Server package</strong></p>
+<ol>
+<li>
+<p>Run the <strong>Maven Build</strong> shell script to build the applications and
+    produce a Liberty Server package, which will use WebSphere Liberty
+    kernel, version 22.0.0.8</p>
+<div class="highlight"><pre><span></span><code>/home/techzone/liberty_admin_pot/lab-scripts/mavenBuild.sh -v 22.0.0.8
+</code></pre></div>
+<p><strong>Note:</strong> there are additional steps performed aside from what is
+ depicted in the output above which only shows the completion.</p>
+<p><img alt="A screenshot of a computer Description automatically
+ generated" src="images/media/image14.png"></p>
+</li>
+<li>
+<p>Using the File viewer on the VM desktop, see that the server package
+    was produced.</p>
+<p>a. Double mouse-click on the “<strong>Home”</strong> folder on the Desktop VM.</p>
+<p><img src="./images/media/image15.png" width="200"></p>
+<p>b. From the file explorer, navigate
+ to <strong><code>Home &gt; lab-work &gt; packagedServers</code></strong> directory.</p>
+<p><strong>TIP:</strong> the server package is named based on the version of Liberty
+ in the package, and the placeholder server name;
+ “<strong>22.0.0.8-pbwServerX.zip</strong>".</p>
+<p><img src="./images/media/image16.png" width="400"></p>
+</li>
+</ol>
+<p><strong>What did the Maven Build do?</strong></p>
+<p>The core activity performed by the script is to run Maven to build the
+applications and produce a Liberty Server package. The server package is
+somewhat customized to include additional artifacts and configuration
+overrides that are required to run the applications in Liberty.</p>
+<p>The Maven build process leverages the “<strong>Liberty Maven Plugin</strong>”, which
+provides for the capabilities to retrieve Liberty binaries from the
+maven repo, build the application, and create a Liberty server package.</p>
+<p>As illustrated below, Maven configures Liberty using the artifacts
+provided in the projects and produced by the build.</p>
+<ul>
+<li>
+<p>Maven adds the server.xml file and the application binaries (WAR,
+    EAR)</p>
+</li>
+<li>
+<p>Maven adds the configDropins/overrides as required for the
+    environment:</p>
+</li>
+</ul>
+<blockquote>
+<p><img alt="" src="images/media/image17.png"></p>
+</blockquote>
+<p><strong>Below is a hi-level list of tasks the maven build process performs in
+this lab:</strong></p>
+<ul>
+<li>
+<p>Download the Liberty Kernel based on the version specified on the
+    command; for example, version 22.0.0.8</p>
+</li>
+<li>
+<p>Build the application deployable artifacts for <strong>PlantsByWebSphere</strong>
+    and <strong>WhereAmI</strong> applications: EAR, WAR, JAR</p>
+</li>
+<li>
+<p>Create a Liberty Server named “<strong>pbwServerX</strong>” as a template server
+    that is used for multiple deployments to the collective.</p>
+</li>
+<li>
+<p>Add the two example applications to the server configuration</p>
+</li>
+<li>
+<p>Add the required DB2 libraries to the server</p>
+</li>
+<li>
+<p>Replace the server.xml server configuration file with the server.xml
+    generated by Transformation Advisor</p>
+</li>
+<li>
+<p>Add the “<strong>memberOverrides.xml</strong>” config/overrides file</p>
+</li>
+<li>
+<p>Install all the Liberty features as required by
+    the <strong>server.xml</strong> file</p>
+</li>
+<li>
+<p>Install the Collective Member feature so servers can be included as
+    members in a Liberty Collective</p>
+</li>
+<li>
+<p>Install the Session Database feature so the application will
+    function with session persistence with fail-over</p>
+</li>
+<li>
+<p>Produce the Liberty Server package as a zip file, containing the
+    Liberty binaries, applications, and the default configurations</p>
+</li>
+</ul>
+<p>The output from the “<strong>mavenBuild</strong>” script is a Liberty Server package.
+The server package is in the following working directory.</p>
+<blockquote>
+<p>/home/techzone/lab-work/packagedServers</p>
+</blockquote>
+<p><br></p>
+<p><strong>Congratulations!</strong> You have used Maven and successfully produced a
+Liberty server package, which adheres to the flexible deployment
+recommended practices.</p>
+<p><br></p>
+<p>Now that you have a server package, it can be deployed to local or
+remote hosts (VMs / machines) where the Liberty collective members will
+host the sample applications.</p>
+<p>In the next sections of the lab, you will continue the recommended
+practice of using automation to create a <code>Liberty Collective</code> and deploy
+the server package to two hosts (VMs), and add the deployed servers to
+the Liberty Collective, where the servers can be centrally managed by
+the collective.</p>
+<h2 id="part-3-create-a-liberty-collective-controller">Part 3: Create a Liberty Collective Controller</h2>
+<p>A <strong><code>Liberty-ND Collective</code></strong> is a set of Liberty servers in a single
+management domain.</p>
+<p>A collective consists of at least one server with
+the <strong>collectiveController-1.0</strong> feature enabled that is called
+a <strong><em>collective controller</em></strong>.</p>
+<p><strong>TIP:</strong> Liberty Servers that function as Collective Controllers MUST
+have Liberty ND licenses, as these servers use
+the <strong>collectiveController-1.0</strong> feature that is only available with
+Liberty-ND.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td width="80"><img src="./images/media/image11.png" style="width:2.12431in;height:0.82431in" alt="sign-info"></td>
+<td><p>The collective controller provides for a centralized administrative control point to perform operations such as MBean routing, file transfer, operational control, and monitoring</p>
+<p>A core role of collective controllers is to receive information, such as MBean attributes and operational state, from the members within the collective so that the data can be retrieved readily without having to invoke an operation on each individual member.</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>A collective can have many servers with
+the <strong><code>collectiveMember-1.0</code></strong> feature enabled in application servers
+that are called <strong><em>collective members.</em></strong></p>
+<p><img alt="" src="images/media/image18.png"></p>
+<p>In this section of the lab, you will create the <strong><code>Collective</code></strong> and
+the <strong><code>Collective Controller</code></strong> using automation, via
+the <strong><code>createController.sh</code></strong> shell script.</p>
+<p>The “<strong>createController.sh</strong>” script provides the following capabilities</p>
+<ul>
+<li>
+<p>Create the Collective and Collective Controller</p>
+</li>
+<li>
+<p>Install the <strong>Liberty Admin Center</strong> application into the Controller
+    server</p>
+</li>
+<li>
+<p>Start the Collective Controller server</p>
+</li>
+</ul>
+<ol>
+<li>
+<p>Run commands below in the same command shell as you used to build
+    the serverPackage, to create a Liberty collective controller:</p>
+<div class="highlight"><pre><span></span><code>/home/techzone/liberty_admin_pot/lab-scripts/createController.sh
+</code></pre></div>
+<p>The createController.sh script creates a Liberty server
+ named <strong>CollectiveController.</strong></p>
+<p>The CollectiveController server is in the following directory:</p>
+<blockquote>
+<p>/home/techzone/lab-work/liberty-controller/wlp/usr/servers</p>
+</blockquote>
+<ul>
+<li>
+<p>The CollectiveController server is configured with
+the <strong><code>collectiveController-1.0</code></strong> feature which enables the server
+to act as the managing server for a collective</p>
+</li>
+<li>
+<p>The CollectiveController server is also configured with
+the <strong><code>adminCenter-1.0</code></strong> feature, which installs the “Liberty Admin
+Center” UI application.</p>
+</li>
+<li>
+<p>The CollectiveController server runs on HTTPS port <strong>9491</strong> in this
+lab</p>
+</li>
+</ul>
+<p><img alt="" src="images/media/image19.png"></p>
+</li>
+<li>
+<p>Once the collective controller is started, click its <strong>Admin Center
+    URL</strong> to launch it in a browser window, then enter the login
+    credentials as: <strong>admin</strong> / <strong>admin</strong>.</p>
+<p><strong>Note:</strong> If you see the “Warning: Potential Security Risk Ahead”, &gt;
+ click <strong>Advanced..-&gt;scroll down and _&gt;Accept Risk and Continue</strong> to
+ continue.</p>
+<p><img alt="A screenshot of a computer Description automatically
+ generated" src="images/media/image20.png"></p>
+</li>
+<li>
+<p>Login to the <strong>Admin Center</strong> using
+    credentials: <strong>admin</strong> / <strong>admin</strong>.</p>
+<p><img alt="" src="images/media/image21.png"></p>
+<p>The Liberty Collective “<strong>Admin Center”</strong> UI is displayed.</p>
+<p><img alt="" src="images/media/image22.png"></p>
+</li>
+<li>
+<p>Click the <strong><code>Explore</code></strong> icon to display the servers, applications, and
+    hosts in the Collective.</p>
+<p><img alt="Icon Description automatically
+ generated" src="images/media/image23.png"></p>
+<p>The collective resource list is displayed, and you can see that you
+ have:</p>
+<ul>
+<li>
+<p>one server – The collective controller server</p>
+</li>
+<li>
+<p>one host – the local host that the controller is running on</p>
+</li>
+<li>
+<p>one runtime – Liberty runtime</p>
+</li>
+</ul>
+<p><img alt="Graphical user interface, application Description automatically
+ generated" src="images/media/image24.png"></p>
+</li>
+</ol>
+<h2 id="part-4-create-liberty-collective-members">Part 4: Create Liberty Collective Members</h2>
+<p>The collective members are the Liberty servers that run your
+applications. For Liberty servers to join a collective, the servers must
+have the <strong><code>collectiveMember-1.0</code></strong> feature enabled.</p>
+<p>Membership in a Liberty collective is optional. Liberty servers join a
+collective by registering with a collective controller to become
+members. Members share information about themselves with the controller
+through the controller operational repository.</p>
+<p><img alt="" src="images/media/image25.png"></p>
+<p>In this section of the lab, you will join Liberty servers as collective
+members to the collective, using the server package that you produced
+previously in the lab.</p>
+<p>That server package you created, includes the Liberty binaries, the
+sample applications, and default server configuration overrides.</p>
+<p>The <strong>collectiveMember-1.0</strong> feature was installed and enabled for the
+Liberty server that is in the server package.</p>
+<p>In this lab, you use the “<strong><code>addMember.sh</code></strong>” script to deploy the server
+packages to the nodes, create the collective members, and join the
+members to the collective.</p>
+<p><strong>The addMember.sh script performs the following tasks:</strong></p>
+<ul>
+<li>
+<p>Register the Host machine if it is remote VM from the Controller</p>
+</li>
+<li>
+<p>Copy or send the server package to the host machine where Liberty
+    will be deployed</p>
+</li>
+<li>
+<p>Unzip the server package, which is an archive installation of
+    Liberty on the hosts machines (VMs)</p>
+</li>
+<li>
+<p>Apply server configuration overrides for the specific collective
+    member</p>
+</li>
+<li>
+<p>Join the collective member to the collective</p>
+</li>
+<li>
+<p>Open application port and Collective Controller port for remote
+    hosts</p>
+</li>
+</ul>
+<p>This script adds collective members, one to the local host VM,
+server0.gym.lan, another to the remote host VM, server1.gym.lan.</p>
+<p>Use the automation script to deploy the Liberty servers from the server
+package you created earlier and join them as a member to the collective.</p>
+<ol>
+<li>In the same command shell as before, run the addMember.sh script
+    twice with different input parameters as shown to create two Liberty
+    servers.<div class="highlight"><pre><span></span><code>/home/techzone/liberty_admin_pot/lab-scripts/addMember.sh -n  appServer1 -v 22.0.0.8 -p 9081:9441 -h server0.gym.lan
+
+/home/techzone/liberty_admin_pot/lab-scripts/addMember.sh -n  appServer2 -v 22.0.0.8 -p 9082:9442 -h server1.gym.lan
+</code></pre></div>
+</li>
+</ol>
+<p>When the script completes, the server <strong>appServer1</strong> and
+ server <strong>appServer2</strong> are created and added to the collective.</p>
+<ol start="2">
+<li>
+<p>Go back to the Liberty collective <strong>Admin Center</strong> page and you can
+    see the total number of servers is now 3 with the <strong>appServer1</strong>
+    and <strong>appServer2</strong> added.</p>
+<p><img alt="A screenshot of a computer error Description automatically generated
+ with low confidence" src="images/media/image26.png"></p>
+</li>
+<li>
+<p>Click the <strong>SERVERS</strong> icon to go to its details page.</p>
+<p><img alt="A picture containing text, font, number, line Description
+ automatically generated" src="images/media/image27.png"></p>
+<p>You see the <strong>appServer1</strong> and <strong>appServer2</strong> have been added to the
+ server list and they are in the <strong>Stopped</strong> state.</p>
+<p><img alt="A screenshot of a computer Description automatically
+ generated" src="images/media/image28.png"></p>
+</li>
+</ol>
+<h2 id="part-5-verify-the-application-deployment-in-the-collective">Part 5: Verify the application deployment in the collective</h2>
+<p>You have deployed two Liberty servers as the collective members. In this
+section, you will start these two servers from the Liberty Admin Center
+and run the example applications on the individual Liberty servers to
+ensure the applications run properly.</p>
+<ol>
+<li>
+<p>Start the DB2 application database for PlantsByWebSphere</p>
+<p>The PlantsByWebSphere application requires an application database,
+which you need to ensure is up and running.</p>
+<p>a.  Before starting the Liberty servers, you need to start the db2
+database used by the <strong>PlantsByWebSphere</strong> application with the
+command below.</p>
+<div class="highlight"><pre><span></span><code>docker start db2_demo_data
+</code></pre></div>
+</li>
+<li>
+<p>Start the Liberty servers from the Admin Center</p>
+<p>a.  In the server details page, click the dropdown menu icon
+of <strong><code>appServer1</code></strong> and select <strong><code>Start</code></strong> to start the server.</p>
+<p><img alt="Graphical user interface, application Description automatically
+ generated" src="images/media/image29.png"></p>
+<p><strong>Note:</strong> If prompted for credentials, enter the Admin Center username
+ and password as: <strong>admin</strong> / <strong>admin</strong>.</p>
+<p>c.  Click <strong><code>Start</code></strong> to confirm the start <strong>appServer1</strong> server command.</p>
+<p><img alt="A screenshot of a computer Description automatically generated with
+ medium confidence" src="images/media/image30.png"></p>
+<p>Server <strong>appServer1</strong> will start, and you can see it is now in
+ the <strong>Running</strong> state.</p>
+<p>The appServer1 server now shows it has two applications <code>running</code>, which
+ are used in the labs in this workshop.</p>
+<ul>
+<li>
+<p>PlantsByWebSphere</p>
+</li>
+<li>
+<p>WhoAmI</p>
+</li>
+</ul>
+<p><img alt="A screenshot of a computer Description automatically
+ generated" src="images/media/image31.png"></p>
+</li>
+<li>
+<p>Repeat the same server start procedure for <strong><code>appServer2</code></strong> server.
+    Once it is done, the <strong>appServer2</strong> server is started as show below:</p>
+<p><img alt="A screenshot of a computer Description automatically generated with
+ medium confidence" src="images/media/image32.png"></p>
+</li>
+</ol>
+<h3 id="51-test-the-two-example-applications-used-in-the-lab">5.1 - Test the two example applications used in the lab</h3>
+<p>In this section, you will test the two applications that are deployed in
+the collective.</p>
+<p><strong>Test the PlantsByWebSphere application:</strong></p>
+<ol>
+<li>
+<p>To access the <strong>PlantsByWebSphere</strong> application on <strong>appServer1</strong></p>
+<p>a. Open a new tab on the Firefox browser, enter the following URL to
+ test <strong>PlantsByWebSphere</strong> on <strong>appServer1</strong>, which is
+ on <strong>server0.gym.lan</strong></p>
+<div class="highlight"><pre><span></span><code>https://server0.gym.lan:9441/PlantsByWebSphere
+</code></pre></div>
+<p><strong>Note:</strong> If you see the “Warning: Potential Security Risk Ahead”, &gt;
+ click <strong>Advanced..-&gt;scroll down and -&gt;Accept Risk and Continue</strong> to
+ continue.</p>
+<p><img alt="A screenshot of a website Description automatically generated with
+ low confidence" src="images/media/image38.png"></p>
+<p>b. In the application, click on the “<strong>Flowers</strong>” tab to view the
+ catalog of flowers. This action retrieves catalog details from the
+ application DB2 database.</p>
+<p><img alt="A screenshot of a computer Description automatically generated with
+ medium confidence" src="images/media/image39.png"></p>
+</li>
+<li>
+<p>Repeat the steps to access the <strong>PlantsByWebSphere</strong> application on
+    <strong>appServer2</strong> on host <strong>server1.gym.lan</strong></p>
+<p>a. Open a new tab on the Firefox browser and test
+ <strong>PlantsByWebSphere</strong> on <strong>appServer2</strong>, which is
+ on <strong>server1.gym.lan</strong></p>
+<div class="highlight"><pre><span></span><code>https://server1.gym.lan:9442/PlantsByWebSphere
+</code></pre></div>
+<p><strong>Note:</strong> If you see the “Warning: Potential Security Risk Ahead”, &gt;
+ click <strong>Advanced..-&gt;scroll down and -&gt; Accept Risk and Continue</strong> to
+ continue.</p>
+<p><img alt="A screenshot of a website Description automatically generated with
+ low confidence" src="images/media/image40.png"></p>
+</li>
+</ol>
+<p><strong>Test the WhereAmI application:</strong></p>
+<ol>
+<li>
+<p>To access the <strong>WhereAmI</strong> application on <strong>appServer1.</strong></p>
+<p>a. Open a new tab on the Firefox browser and enter the following URL
+ to test <strong>WhereAmI</strong> on <strong>appServer1</strong>, which is
+ on <strong>server0.gym.lan</strong></p>
+<div class="highlight"><pre><span></span><code>https://server0.gym.lan:9441/WhereAmI
+</code></pre></div>
+<p><img alt="A screenshot of a computer Description automatically
+ generated" src="images/media/image41.png"></p>
+</li>
+<li>
+<p>Repeat the steps to access the <strong>WhereAmI</strong> application on
+    <strong>appServer2</strong> on host <strong>server1.gym.lan.</strong></p>
+<p>a. Open a new tab on the Firefox browser and test <strong>WhereAmI</strong>
+ on <strong>appServer2</strong>, which is on <strong>server1.gym.lan</strong></p>
+<div class="highlight"><pre><span></span><code>https://server1.gym.lan:9442/WhereAmI
+</code></pre></div>
+<p><img alt="A screenshot of a computer Description automatically
+ generated" src="images/media/image42.png"></p>
+</li>
+<li>
+<p><strong>Close</strong> the browser windows / tabs displaying the
+    <strong>PlantsByWebSphere</strong> and <strong>WhereAmI</strong> applications.</p>
+</li>
+</ol>
+<h2 id="part-6-configure-dynamic-routing-application-high-availabilty">Part 6: Configure Dynamic Routing application High Availabilty</h2>
+<p>In this section, you configure the `Dynamic Routing`` feature to route HTTP
+requests to members of Liberty collectives without having to regenerate
+the WebSphere plug-in configuration file when the environment changes.</p>
+<p>The Dynamic Routing feature, <strong><code>dynamicRouting-1.0</code></strong>, provides the
+Dynamic Routing service, which dynamically retrieves routing information
+from the collective repository and delivers this information to the
+WebSphere plug-in.</p>
+<p>To configure dynamic routing for a Liberty collective, you need to
+perform the following tasks:</p>
+<ul>
+<li>
+<p><strong>Add dynamicRouting-1.0 feature to the Collective controller</strong></p>
+<p>This feature must be added to the Collective Controller’s server.xml
+ file.</p>
+</li>
+<li>
+<p><strong>Create a Plug-in configuration file for the HTTP Server</strong></p>
+<p>The “dynamicRouting setup” command generates the “keystore” and
+ “plug-in configuration files” required for dynamic routing.</p>
+</li>
+<li>
+<p><strong>Establish a secure connection between the plug-in and the
+    collective controller</strong></p>
+</li>
+</ul>
+<p>The generated plug-in configuration file and keys must be copied to
+ the appropriate locations to establish the secure connection.</p>
+<h3 id="61-setup-dynamic-routing-in-websphere-liberty">6.1 - Setup Dynamic Routing in WebSphere Liberty</h3>
+<p>In this section, you will use an automation script, which we provide in
+the lab environment, to perform the steps described above to setup and
+configure Dynamic Routing.</p>
+<ol>
+<li>
+<p>Run the <code>setupDynamicRouting.sh</code> script shown below in the same
+    command shell you used previously, to setup the plugin configuration
+    for dynamic routing.</p>
+<p>The <strong>setupDynamicRouting.sh</strong> script performs all the tasks described
+ above which configures dynamic routing in the collective</p>
+<div class="highlight"><pre><span></span><code>/home/techzone/liberty_admin_pot/lab-scripts/setupDynamicRouting.sh
+</code></pre></div>
+<p>Once the command is completed, the pug-in configuration files are
+ created and configured for the IHS server.</p>
+<p><img alt="Text Description automatically
+ generated" src="images/media/image43.png"></p>
+</li>
+</ol>
+<p><strong>Dynamic routing in the Liberty Collective is now ready to use!</strong></p>
+<h3 id="62-examine-the-generated-plugin-cfgxml-file">6.2 - Examine the generated “plugin-cfg.xml” file</h3>
+<p>The <strong><code>plugin-cfg.xml</code></strong> file contains configuration information that
+determines how the web server plug-in forwards requests to the Liberty
+servers in the collective.</p>
+<p>The plugin only needs to connect to the Collective Controller to get
+topology information. It does not need to know the host/port of the
+application servers.</p>
+<p>The plugin-cfg.xml file is in the following directory:</p>
+<blockquote>
+<p><strong>/opt/IBM/WebSphere/Plugins/config/webserver1</strong></p>
+</blockquote>
+<ol>
+<li>
+<p>Examine the generated <strong>plugin-cfg.xml</strong></p>
+<div class="highlight"><pre><span></span><code>gedit /opt/IBM/WebSphere/Plugins/config/webserver1/plugin-cfg.xml
+</code></pre></div>
+<p>With Dynamic Routing, HTTP requests are sent to members of Liberty
+ collectives without regenerating the WebSphere plug-in configuration
+ file when the environment changes.</p>
+<p><strong>Note:</strong> The plugin-cfg.xml no does not contain the host and port
+ information for the application servers or the application URL, etc.
+ as is the case with the static HTTP server plugin. Instead, the
+ plugin-cfg.xml contains the host and port information for the
+ collective controller which provides the application and application
+ server information dynamically to the plugin.</p>
+<p>When servers, cluster members, applications, or virtual hosts are
+ added, removed, started, stopped, or modified; the new information is
+ dynamically delivered to the WebSphere plug-in from the Liberty
+ Collective Controller.</p>
+<p>In this configuration, requests are routed based on up-to-date
+ information.</p>
+<p><img alt="A screenshot of a computer program Description automatically
+ generated with low confidence" src="images/media/image44.png"></p>
+</li>
+<li>
+<p><strong>Close</strong> the <strong>gedit</strong> editor. DO NOT SAVE ANY CHANGES!</p>
+</li>
+</ol>
+<h3 id="63-examine-the-web-servers-httpdconf-file">6.3 - Examine the Web Server’s “httpd.conf” file</h3>
+<p>The <strong><code>httpd.conf</code></strong> file contains the HTTP Server configuration.</p>
+<p>The WebSphere plug-in module is loaded by appending configuration to the
+httpd.conf file in the web server.</p>
+<p>The web server’s httpd.conf file is in the following directory:</p>
+<blockquote>
+<p><strong>/opt/IBM/HTTPServer/conf</strong></p>
+</blockquote>
+<ol>
+<li>
+<p>Examine the generated <strong>httpd.conf</strong> file</p>
+<div class="highlight"><pre><span></span><code>gedit /opt/IBM/HTTPServer/conf/httpd.conf
+</code></pre></div>
+<p>a. Scroll to the last line of the httpd.conf file, which is the
+ configuration to load the WebSphere plugin module.</p>
+<p>b. Notice the configuration points to the <strong>plugin-cfg.xml</strong> file,
+ which is used to determine how to direct the http requests to the
+ Liberty servers in the collective.</p>
+<p><img alt="A picture containing text, screenshot, line, font Description
+ automatically generated" src="images/media/image45.png"></p>
+</li>
+<li>
+<p><strong>Close</strong> the <strong>gedit</strong> editor. <strong>DO NOT SAVE ANY CHANGES</strong>!</p>
+</li>
+</ol>
+<h2 id="part-7-testing-the-dynamic-routing-features">Part 7: Testing the Dynamic Routing Features</h2>
+<p>In this section, you are going to test the dynamic routing you
+configured for the Liberty collective.</p>
+<p>You are going to conduct two testing scenarios:</p>
+<ul>
+<li>
+<p>In the first test case, you are using
+    the <strong>PlantsByWebSphere</strong> application to test the high
+    availability of the application and verify you can always access the
+    application directly from the IHS server if at least one of the
+    member servers is running.</p>
+<p>When you stop one of the app servers, the dynamic routing
+ automatically redirects the traffic to another surviving app server
+ without any user intervention or application interruption.</p>
+</li>
+<li>
+<p>The second test case demonstrates round robin load balancing and the
+    dynamic routing distributes traffic to the collective members based
+    on their workloads.</p>
+<p>The <strong>WhereAmI</strong> application is used in this testing because it does
+ NOT use sticky sessions, whereas the PlantsByWebSphere application
+ does.</p>
+<p>When you refresh the application URL link in the web browser window,
+ you can see the dynamic routing performs round-robin style routing
+ among the servers.</p>
+</li>
+</ul>
+<p><strong>Test Case 1:</strong></p>
+<p>This test case uses PlantsByWebSphere application. The design of this
+application uses HTTP Sessions to store application state in the
+internal http session object. By default, the http session object is
+local to the Liberty server, and not persisted in any external store.</p>
+<p>WebSphere traditional and WebSphere Liberty use a JSESSIONID in this
+case, which identifies the server handing the request that includes uses
+an http session. Then on subsequent transactions or requests, the
+JSESSIONID is read by the web server plugin, and requests continue to be
+routed to the SAME server.</p>
+<p>If the server handing the requests goes down, then the web server plugin
+will redirect the requests to any surviving servers.</p>
+<p>However, without session persistence configured, any session data is
+lost, such as items in a shopping cart, or login cookies, etc.</p>
+<ol>
+<li>
+<p>To access the <strong>PlantsByWebSphere</strong> application through <strong>IHS</strong>
+    server and plugin, open a new browser window and enter the
+    application URL as:</p>
+<div class="highlight"><pre><span></span><code>https//server0.gym.lan:8443/PlantsByWebSphere
+</code></pre></div>
+<p>The application “<strong>Home”</strong> page is displayed.</p>
+<p><img alt="Graphical user interface, website Description automatically
+ generated" src="images/media/image46.png"></p>
+</li>
+<li>
+<p>You can navigate and visit different pages of the application. You
+    can see that although the application is running on two Liberty
+    servers with different HTTP/HTTPS ports, the dynamic routing
+    function of the Liberty collective is able to direct the incoming
+    traffic through the specified IHS server HTTPS port (8443) to the
+    application.</p>
+<p><img alt="A screenshot of a computer Description automatically generated with
+ medium confidence" src="images/media/image47.png"></p>
+</li>
+<li>
+<p>Click the <strong>Help</strong> link to go to application <strong>Help</strong> page.</p>
+<p><img alt="A green and white rectangle with white text Description
+ automatically generated with low
+ confidence" src="images/media/image48.png"></p>
+<p>The application Help page is displayed. On this page, you can see
+ which Liberty server the request was routed.</p>
+<p>As showing in the screen shot below, the application is running
+ from <strong>appServer2</strong> which might be different in your case.</p>
+<p><img alt="A screenshot of a computer Description automatically generated with
+ medium confidence" src="images/media/image49.png"></p>
+</li>
+<li>
+<p><strong>Stop</strong> the Liberty server that is identified as handling the
+    request, as shown on the PlantsByWebSphere
+    application <strong>"Help"</strong> page.</p>
+<p>a. Go back to Liberty collective <strong>Admin Center Servers</strong> page.</p>
+<p>b. <strong>Stop</strong> the server that was identified on the application Help
+ page, as illustrated below:</p>
+<p><img alt="Graphical user interface, application Description automatically
+ generated" src="images/media/image50.png"></p>
+<p>If prompted, enter the Admin Center credentials as: <strong>admin / admin</strong>.</p>
+<p>The server is stopped.</p>
+<p><img alt="Graphical user interface, application, website Description
+ automatically generated" src="images/media/image51.png"></p>
+</li>
+<li>
+<p>From the <strong>PlantsByWebSphere</strong> application page, click the
+    “<strong>Flowers</strong>” tab, to show the catalog of flowers.</p>
+<p><img alt="A picture containing text, screenshot, font, line Description
+ automatically generated" src="images/media/image52.png"></p>
+</li>
+<li>
+<p>Click the <strong>Help</strong> link to go to application <strong>Help</strong> page, you can
+    see now the application is running from a different application
+    server.</p>
+<p><img alt="A screenshot of a computer Description automatically generated with
+ medium confidence" src="images/media/image53.png"></p>
+<p>This demonstrates that the Liberty dynamic routing detects the
+ application server is down and directs the traffic to another
+ application server automatically.</p>
+<p><strong>The application high availability test is completed.</strong></p>
+</li>
+</ol>
+<p><strong>Test Case 2:</strong></p>
+<p>In this test case, the <strong>WhereAmI</strong> application is used. This
+application does not use http sessions, and therefore the web server
+plugin can direct requests to the Liberty servers in a round-robin
+style.</p>
+<ol>
+<li>
+<p><strong><code>Start</code></strong> both application servers (<strong><code>appServer1</code></strong> and
+    <strong><code>appServer2</code></strong>) from Liberty collective Admin Center.</p>
+</li>
+<li>
+<p>Open a new browser window and enter the <strong><code>WhereAmI</code></strong> application URL
+    as:</p>
+<div class="highlight"><pre><span></span><code>https://server0.gym.lan:8443/WhereAmI
+</code></pre></div>
+<p>The output shows that currently the application is running
+ from <strong>appServer1</strong> server.</p>
+<p>In your test, you may see <strong>appSever2</strong> handing the initial request.</p>
+<p><img alt="Graphical user interface, text, application, email Description
+ automatically generated" src="images/media/image54.png"></p>
+</li>
+<li>
+<p>Refresh the application page by clicking the <strong>refresh icon</strong> on the
+    browser.</p>
+<p>You can see the output showing that Liberty dynamic routing feature
+ directs the request traffic to other application server in a
+ round-robin fashion.</p>
+<p><img alt="A screenshot of a computer Description automatically
+ generated" src="images/media/image55.png"></p>
+</li>
+<li>
+<p>Refresh the browser again a few more times and see that the requests
+    get routed to <strong>appServer1</strong> and <strong>appServer2</strong> accordingly.</p>
+<p><strong>The round robin load balancing test is completed.</strong></p>
+</li>
+</ol>
+<h2 id="part-8-produce-a-new-server-package-using-liberty-220012">Part 8: Produce a new “server package” using Liberty 22.0.0.12</h2>
+<p>In this section of the lab, you will use the same automated
+<strong><code>mavenBuild</code></strong> script that was used in previous labs to produce a
+NEW Liberty server package, with only one notable difference; the server
+package will include Liberty <code>22.0.0.12</code> instead of 22.0.0.8.</p>
+<p>Producing the build output in the form of a Liberty server package zip
+file provides the flexibility of deploying and upgrading your version of
+Liberty and applications as an immutable package, like how container
+images are deployed to Kubernetes container platforms.</p>
+<p>In this section of the lab, you will use the provided shell script that
+automates the tasks for producing a server package for deployment to the
+collective.</p>
+<p><strong>Use the Maven Build script to produce a Server package with Liberty
+22.0.0.12</strong></p>
+<ol>
+<li>
+<p>Run the following command to build the applications and produce a
+    server package, which will use WebSphere Liberty kernel, version
+    22.0.0.12</p>
+<div class="highlight"><pre><span></span><code>/home/techzone/liberty_admin_pot/lab-scripts/mavenBuild.sh -v 22.0.0.12
+</code></pre></div>
+<p>Take note that a new Liberty server package was created with the name:
+ <strong><code>22.0.0.12-pbwServerX.zip</code></strong></p>
+<p><img alt="A screenshot of a computer Description automatically
+ generated" src="images/media/image56.png"></p>
+<p>The output from the “<strong>mavenBuild</strong>” script is a Liberty Server
+ package.</p>
+<p>The server package is in the following working directory.</p>
+<blockquote>
+<p><strong>/home/techzone/lab-work/packagedServers</strong></p>
+</blockquote>
+</li>
+<li>
+<p>Using the File viewer on the VM desktop, see that the server package
+    was produced.</p>
+<p>a. Double mouse-click on the “<strong>Home”</strong> folder on the Desktop VM</p>
+<p><img src="./images/media/image15.png" width="150"></p>
+<p>b. From the file explorer, navigate
+ to <strong><code>Home &gt; lab-work &gt; packagedServers</code></strong> directory.</p>
+<p><strong>TIP:</strong> the server package is named based on the version of Liberty
+ in the package, and the placeholder server name;
+ “<strong>22.0.0.12-pbwServerX.zip</strong>.</p>
+<p><img alt="A screenshot of a computer Description automatically
+ generated" src="images/media/image57.png"></p>
+</li>
+</ol>
+<p><strong>Congratulations!</strong> You have used Maven and successfully produced a
+new Liberty server package that contains your applications and WebSphere
+Liberty 22.0.0.12.</p>
+<p><br></p>
+<p>In the next sections of the lab, you will continue the best practice of
+using automation to deploy the server package to two hosts (VMs) and
+join the deployed servers to the Liberty Collective.</p>
+<h2 id="part-9-deploy-the-new-server-package-to-the-collective">Part 9: Deploy the new server package to the Collective</h2>
+<p>In this section of the lab, you deploy new Liberty servers as collective
+members to the collective, using the server package that you produced in
+the previous section of the lab.</p>
+<p>That server package you created, includes the Liberty binaries for
+22.0.0.12 and your SAME sample applications using the SAME default
+server configuration as the previous deployment in Liberty 22.0.0.8.</p>
+<p>In this lab, you use the same <strong><code>addMember.sh</code></strong> script used in previous
+labs to deploy the server packages to the nodes, deploy the server
+package, create the collective members, and join the members to the
+collective.</p>
+<p><strong>Launch the Liberty Admin Center in the Web Browser</strong></p>
+<ol>
+<li>
+<p>If the Liberty Adin Center is not already open in the Web Browser,
+    open it now, using the following URL:</p>
+<div class="highlight"><pre><span></span><code>https://server0.gym.lan:9491/adminCenter/
+</code></pre></div>
+</li>
+<li>
+<p>Login to the <strong>Admin Center</strong> using
+    credentials: <strong>admin</strong> / <strong>admin</strong>.</p>
+<p><img alt="" src="images/media/image21.png"></p>
+<p>The Liberty Collective “<strong>Admin Center”</strong> UI is displayed.</p>
+<p><img alt="" src="images/media/image22.png"></p>
+</li>
+<li>
+<p>Click the <strong><code>Explore</code></strong> icon to display the servers, applications, and
+    in the Collective.</p>
+<p><img alt="Icon Description automatically
+ generated" src="images/media/image58.png"></p>
+</li>
+<li>
+<p>Click the <strong><code>Servers</code></strong> view to display the servers in the Collective.</p>
+<p><strong>Note:</strong> You should already see two servers deployed in the
+ collective.</p>
+<p>The servers are running <strong>Liberty 22.0.0.8</strong>. And the server should be
+ in the “<strong>Running</strong>” state.</p>
+</li>
+<li>
+<p><strong>If the appServer1 or appServer2 servers are NOT running, go ahead
+    and start them now.</strong></p>
+<p>These servers were deployed in the previous labs.</p>
+<p><img alt="" src="images/media/image59.png"></p>
+</li>
+</ol>
+<h3 id="91-deploy-collective-member-to-the-local-host-vm-server0gymlan">9.1 - Deploy collective member to the local host VM, server0.gym.lan</h3>
+<p>Use the automation script to deploy the Liberty server from the server
+package you created earlier and join the member to the collective.</p>
+<p><strong>The script below performs the following:</strong></p>
+<ul>
+<li>
+<p>deploy the server package for Liberty version 22.0.0.12</p>
+</li>
+<li>
+<p>Apply overrides for the HTTP and HTTPS ports with “9081 / 9441”</p>
+</li>
+<li>
+<p>Rename the default server name with “appServer1”</p>
+</li>
+<li>
+<p>Join the server to the collective</p>
+</li>
+</ul>
+<ol>
+<li>
+<p>From the same terminal window on the VM, run the command below to
+    create a local Liberty collective member on <strong>server0.gym.lan</strong> VM
+    using the 22.0.0.12 server package.</p>
+<div class="highlight"><pre><span></span><code>/home/techzone/liberty_admin_pot/lab-scripts/addMember.sh -n appServer1 -v 22.0.0.12 -p 9081:9441 -h server0.gym.lan
+</code></pre></div>
+<p><img alt="A screenshot of a computer Description automatically
+ generated" src="images/media/image60.png"></p>
+<p>When the script completes, the server <strong>appServer1</strong> with Liberty
+ 22.0.0.12 is created and added to the collective.</p>
+<p>The <strong>addMember.sh</strong> script created a local Liberty server
+ called <strong>appServer1</strong> in the following directory on
+ the <strong>server0.gym.lan</strong> VM:</p>
+<blockquote>
+<p><strong>/home/techzone/lab-work/liberty-staging/22.0.0.12-appServer1/wlp/usr/servers</strong></p>
+</blockquote>
+</li>
+<li>
+<p>Go back to the Liberty collective Admin Center’s Server page. You
+    can see that the <strong><code>appServer1</code></strong> server in directory
+    <strong><code>22.0.0.12-appServer1</code></strong> is added to the collective as a new
+    server.</p>
+<p>The Server is in the “<strong>Stopped</strong>” state.</p>
+<p><img alt="" src="images/media/image61.png"></p>
+</li>
+</ol>
+<h3 id="92-deploy-a-collective-member-to-the-remote-host-vm-server1gymlan">9.2 - Deploy a collective member to the remote host VM, server1.gym.lan</h3>
+<p>Now, run the script again, using slightly different parameters, to
+deploy Liberty to the remote VM, <strong>server1.gym.lan</strong>. And, then join the
+remote member to the collective.</p>
+<p>Joining remote members to a collective requires a couple of additional
+steps that the script performs for you in the lab environment and are
+identified below.</p>
+<ol>
+<li>
+<p>Run command below to create a remote Liberty collective member
+    on <strong>server1.gym.lan</strong> VM, specifying a different server name and
+    ports.</p>
+<div class="highlight"><pre><span></span><code>/home/techzone/liberty_admin_pot/lab-scripts/addMember.sh -n  appServer2 -v 22.0.0.12 -p 9082:9442 -h server1.gym.lan
+</code></pre></div>
+<p><img alt="A screenshot of a computer Description automatically
+ generated" src="images/media/image62.png"></p>
+</li>
+</ol>
+<ul>
+<li>
+<p>When the script completes, the server <strong><code>appServer2</code></strong> with Liberty
+    <code>22.0.0.12</code> is created and added to the collective.</p>
+</li>
+<li>
+<p>The <strong>addMember.sh</strong> script created a local Liberty server
+    called <strong>appServer2</strong> in the following directory on
+    the <strong>server1.gym.lan</strong> VM:</p>
+<blockquote>
+<p><strong>/opt/IBM/liberty-staging/22.0.0.12-appServer2/wlp/usr/servers</strong></p>
+</blockquote>
+</li>
+<li>
+<p>The server uses <strong>9082</strong> and <strong>9442</strong> as its HTTP/HTTPS ports, as
+    defined ad script input parameters.</p>
+</li>
+</ul>
+<ol start="2">
+<li>
+<p>Go back to the Liberty collective Admin Center’s “<strong>servers</strong>” view. You can see the new member, <strong><code>appServer2</code></strong>, has been added to
+    the server list and is the <strong><code>Stopped</code></strong> state.</p>
+<p><img alt="A screenshot of a computer Description automatically generated with
+ medium confidence" src="images/media/image63.png"></p>
+</li>
+</ol>
+<h3 id="93-ripple-start-the-new-220012-servers">9.3 - Ripple Start the new 22.0.0.12 servers</h3>
+<p>Now that the new Liberty servers with Liberty version 22.0.0.12 have
+been deployed to the collective, all you need to do now is ripple start
+the servers.</p>
+<p>Ripple starting the servers will allow the new application servers to
+accept incoming request without incurring an application outage.</p>
+<p>The ripple start will be manually performed in the Admin Center in this
+lab. However, like the other automated scripts you have used, this
+process can also be easily automated.</p>
+<p><strong>Steps to ripple start the new servers:</strong></p>
+<ul>
+<li>
+<p>Stop 22.0.0.8-appServer1</p>
+</li>
+<li>
+<p>Start 22.0.0.12-appServer1</p>
+</li>
+<li>
+<p>Stop 22.0.0.8-appServer2</p>
+</li>
+<li>
+<p>Start 22.0.0.12-appServer2</p>
+</li>
+</ul>
+<ol>
+<li>
+<p>Before starting the Liberty servers, you need to ensure the db2
+    database used by the <strong>PlantsByWebSphere</strong> application is running.</p>
+<div class="highlight"><pre><span></span><code>docker start db2_demo_data
+</code></pre></div>
+</li>
+<li>
+<p><strong><code>Stop</code></strong> the collective member <strong><code>22.0.0.8-appServer1</code></strong> from the
+    Liberty Admin Center.</p>
+<p>a. In the <strong>server</strong> details page, click the dropdown menu icon of
+ “<strong>22.0.0.8-appServer1”</strong> and select <strong>Stop</strong> to stop the server.</p>
+<p><img alt="" src="images/media/image64.png"></p>
+<p><strong>Note:</strong> If prompted for credentials, enter the Admin Center username
+ and password as: <strong>admin / admin</strong>.</p>
+<p>b. Click <strong><code>Stop</code></strong> to confirm the stop
+ for <strong>22.0.0.8-appServer1</strong> server</p>
+<p><img alt="A screenshot of a computer error Description automatically generated
+ with medium confidence" src="images/media/image65.png"></p>
+<p>Server <strong>appServer1</strong> will stop, and you can see it is now in
+ the <strong>Stopped</strong> state.</p>
+<p><img alt="A screenshot of a computer Description automatically generated with
+ medium confidence" src="images/media/image66.png">.</p>
+</li>
+<li>
+<p><strong>Start</strong> the collective member “<strong>22.0.0.12-appServer1</strong>” from the
+    Liberty Admin Center.</p>
+<p>a. In the <strong>server</strong> details page, click the dropdown menu icon of
+ “<strong>22.0.0.12-appServer1”</strong> and select <strong>Start</strong> to start the server.</p>
+<p><img alt="" src="images/media/image67.png"></p>
+<p>b. Click <strong><code>Start</code></strong> to confirm the stop
+ for <strong>22.0.0.12-appServer1</strong> server.</p>
+<p><img alt="A screenshot of a computer Description automatically generated with
+ medium confidence" src="images/media/image68.png"></p>
+<p>Server <strong>22.0.0.12-appServer1</strong> will start, and you can see it is now
+ in the <strong>Running</strong> state.</p>
+<p><img alt="A screenshot of a computer Description automatically generated with
+ low confidence" src="images/media/image69.png">.</p>
+</li>
+</ol>
+<p><strong>Checkpoint of the current state</strong></p>
+<p>At this point, you should see the following server states:</p>
+<p><strong>On VM server0.gym.lan:</strong></p>
+<ul>
+<li>
+<p>22.0.0.8-appServer1 - <strong>Stopped</strong></p>
+</li>
+<li>
+<p>22.0.0.12-appServer1 -<strong>Running</strong></p>
+<p><img alt="A screenshot of a computer Description automatically generated with
+medium confidence" src="images/media/image70.png"></p>
+</li>
+</ul>
+<p><strong>On VM server1.gym.lan:</strong></p>
+<ul>
+<li>
+<p>22.0.0.8-appServer2 - <strong>Running</strong></p>
+</li>
+<li>
+<p>22.0.0.12-appServer2 -<strong>Stopped</strong></p>
+<p><img alt="A screenshot of a computer Description automatically generated with
+medium confidence" src="images/media/image71.png"></p>
+</li>
+</ul>
+<p>Next, ripple start the <strong>22.00.12-appServer2</strong> server on
+VM <strong>server1.gym.lan</strong> following the same steps as above.</p>
+<ol>
+<li>
+<p><strong><code>Stop</code></strong> the collective member <strong><code>22.0.0.8-appServer02</code></strong> from the
+    Liberty Admin Center.</p>
+</li>
+<li>
+<p><strong><code>Start</code></strong> the collective member <strong><code>22.0.0.12-appServer02</code></strong> from the
+    Liberty Admin Center.</p>
+<p>The final state should reflect the 22.0.0.12 servers are RUNNING, and
+the 22.0.0.8 servers are STOPPED.</p>
+<p><img alt="" src="images/media/image72.png"></p>
+<p><strong>Congratulations!</strong> You have just completed the upgrade from Liberty
+22.0.0.8 to 22.0.0.12 using WebSphere Liberty’s zero-migration
+architecture and common practices for deployments using immutable server
+packages for flexible deployments.</p>
+<p></p>
+<p>The final activity in this lab is to demonstrate the applications
+continue to run as-is after the upgrade.</p>
+</li>
+</ol>
+<h2 id="part-10-test-the-applications-after-the-liberty-upgrade">Part 10: Test the applications after the Liberty upgrade</h2>
+<p>You have successfully ripple started the new 22.0.0.12 servers in the
+collective.</p>
+<p>In this section, you will test the PlantsByWebSphere and WhereAmI
+applications and ensure the applications run properly after the upgrade
+to Liberty 22.0.0.12.</p>
+<h3 id="101-test-the-plantsbywebsphere-application">10.1 - Test the PlantsByWebSphere application:</h3>
+<ol>
+<li>
+<p>To access the <strong>PlantsByWebSphere</strong> application on appServer1</p>
+<p>a. Open a new tab on the Firefox browser and test PlantsByWebSphere
+ on <strong>appServer1</strong>, which is on <strong>server0.gym.lan</strong></p>
+<div class="highlight"><pre><span></span><code>https://server0.gym.lan:9441/PlantsByWebSphere
+</code></pre></div>
+<p><strong>Note:</strong> You will likely see the “Warning: Potential Security Risk
+ Ahead”, click Advanced-&gt;. scroll down-&gt;Accept Risk and Continue to
+ continue. The warning occurs because new self-signed certs were
+ created when deploying the new application server version.</p>
+<p><img alt="" src="images/media/image73.png"></p>
+<p>b. In the application, click on the “<strong>Help</strong>” link, located on the
+ upper right corner of the application page.</p>
+<p><img alt="" src="images/media/image74.png"></p>
+<p>c. On the “<strong>Help</strong>” page, you will see the Server name and the
+ version of Liberty that is running for the server that handled this
+ specific request.</p>
+<p><img alt="A screenshot of a computer Description automatically generated with
+ medium confidence" src="images/media/image75.png"></p>
+<p>d. In the application, click the “<strong>Home</strong>” link to return to the
+ PlantsByWebSphere Home page.</p>
+<p><img alt="" src="images/media/image76.png"></p>
+</li>
+<li>
+<p>OPTIONAL: Repeat the steps to access
+    the <strong>PlantsByWebSphere</strong> application on appServer2 on host
+    server1.gym.lan</p>
+<div class="highlight"><pre><span></span><code> https://server1.gym.lan:9442/PlantsByWebSphere
+</code></pre></div>
+<p><strong>Note:</strong> If you see the “Warning: Potential Security Risk Ahead”,
+ click Advanced..-&gt;Accept Risk and Continue to continue.</p>
+<p><img alt="" src="images/media/image77.png"></p>
+</li>
+</ol>
+<h3 id="102-test-the-whereami-application">10.2 - Test the WhereAmI application:</h3>
+<ol>
+<li>
+<p>To access the <strong>WhereAmI</strong> application on appServer1</p>
+<p>a. Open a new tab on the Firefox browser and test WhereAmI
+ on <strong>appServer1</strong>, which is on <strong>server0.gym.lan</strong></p>
+<div class="highlight"><pre><span></span><code>https://server0.gym.lan:9441/WhereAmI
+</code></pre></div>
+<p>b. Note that the application is running on Liberty version 22.0.0.12</p>
+<p><img alt="" src="images/media/image78.png"></p>
+</li>
+<li>
+<p>OPTIONAL: Repeat the steps to access the <strong>WhereAmI</strong> application on
+    appServer2 on host server1.gym.lan</p>
+<div class="highlight"><pre><span></span><code>https://server1.gym.lan:9442/WhereAmI
+</code></pre></div>
+<p><img alt="" src="images/media/image79.png"></p>
+</li>
+</ol>
+<h3 id="103-test-dynamic-routing-after-the-liberty-upgrade">10.3 - Test Dynamic Routing after the Liberty upgrade</h3>
+<p>In this part of the lab, you demonstrate that Liberty’s Dynamic Routing
+capabilities is now automatically directing incoming requests from the
+HTTP server to the new Liberty 22.0.0.12 servers, after the upgrade.</p>
+<ol>
+<li>
+<p>To access the <strong>WhereAmI</strong> application through the IBM HTTP Server
+    and plugin, open a new browser window and enter the application URL
+    as:</p>
+<div class="highlight"><pre><span></span><code>https://server0.gym.lan:8443/WhereAmI
+</code></pre></div>
+<p>The output shows the application running on <strong>appServer1</strong> on the
+ initial request.</p>
+<p><strong>Note:</strong> It is possible that the request is routed
+ to <strong>appServer2</strong> instead of appServer1.</p>
+<p>Importantly, note the Liberty Version is: <strong>22.0.0.12</strong>, validating
+ that the Dynamic Routing capability has automatically detected the new
+ Liberty Servers and is directing incoming requests to the new Liberty
+ 22.0.0.12 servers after the upgrade.</p>
+<p><img alt="" src="images/media/image80.png"></p>
+</li>
+<li>
+<p>Refresh the application page by clicking the
+    Browsers <strong>refresh</strong> icon on the page.</p>
+<p>You can see the output showing that Liberty dynamic routing feature
+ directs the request traffic to <strong>appServer2</strong> server.</p>
+<p><img alt="" src="images/media/image81.png"></p>
+</li>
+<li>
+<p>Refresh the browser again a few more times and see that the requests
+    get routed to <strong>appServer1</strong> and <strong>appServer2</strong> accordingly.</p>
+<p>The round robin load balancing test is completed.</p>
+</li>
+</ol>
+<p><strong>Congratulations!</strong></p>
+<p><strong>You have successfully completed the lab “Liberty Deployment on VMs”</strong></p>
+<h2 id="summary">Summary</h2>
+<p>In the lab, you followed the best practices to deploy and configure
+Liberty Collective and upgrade the version of Liberty in the Collective</p>
+<p>Following this methodology, you gained an understanding of how you might
+apply your own build processes or automation to achieve significant
+agility and flexibility managing Liberty collectives with repeatable
+automated processes that significantly reduces risk to your business.</p>
+<p>You have gained an appreciation for Liberty’s “<strong>zero-migration</strong>”
+architecture and how simple it is to upgrade Liberty following the
+common practices described in the lab.</p>
+<p><strong>In this lab, you have completed the following administrative
+activities in Liberty Collective on VMs implementation :</strong></p>
+<ul>
+<li>
+<p>Build Liberty server packages</p>
+</li>
+<li>
+<p>Create a Liberty Collective</p>
+</li>
+<li>
+<p>Deploy Liberty Server packages to the collective</p>
+</li>
+<li>
+<p>Configure and work with Liberty Dynamic Routing fro application HA</p>
+</li>
+<li>
+<p>Upgrade vrsion of Libery using Liberty's zero-migration architecture capabilitoes</p>
+</li>
+</ul></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 IBM
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.annotate", "content.code.copy"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>
